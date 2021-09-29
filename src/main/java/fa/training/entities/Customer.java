@@ -22,10 +22,10 @@ public class Customer {
 	@Column(name = "first_name")
 	private String firstName;
 	
-	@Column(name = "email")
+	@Column(name = "email", unique = true)
 	private String email;
 	
-	@Column(name = "phone")
+	@Column(name = "phone", unique = true)
 	private String phone;
 	
 	public Customer() {}
