@@ -1,5 +1,10 @@
 package fa.training.dao;
 
-public class ToppingDAO {
+import fa.training.entities.Topping;
 
+public class ToppingDAO extends GenericDao<Topping> {
+
+    public ToppingDAO() {
+        super(Topping.class);
+    }
 }

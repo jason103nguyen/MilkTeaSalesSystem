@@ -1,5 +1,10 @@
 package fa.training.dao;
 
-public class MilkTeaDAO {
+import fa.training.entities.MilkTea;
 
+public class MilkTeaDAO extends GenericDao<MilkTea> {
+
+    public MilkTeaDAO() {
+        super(MilkTea.class);
+    }
 }
