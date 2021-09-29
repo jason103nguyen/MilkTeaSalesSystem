@@ -3,4 +3,17 @@
   <groupId>fa.training</groupId>
   <artifactId>MilkTeaSalesSystem</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+    	<dependencies>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>5.4.12.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>5.1.46</version>
+			</dependency>
+		</dependencies>
 </project>
