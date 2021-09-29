@@ -1,10 +1,15 @@
 package fa.training.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,37 +19,40 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "customer_id")
-	private int customerId;
-	
+	private int id;
+
 	@Column(name = "last_name")
 	private String lastName;
-	
+
 	@Column(name = "first_name")
 	private String firstName;
-	
+
 	@Column(name = "email", unique = true)
 	private String email;
-	
+
 	@Column(name = "phone", unique = true)
 	private String phone;
-	
-	public Customer() {}
 
-	public Customer(int customerId, String lastName, String firstName, String email, String phone) {
+	@OneToMany(mappedBy = "customer" , cascade = CascadeType.ALL)
+	private Set<Order> orders = new HashSet<Order>();
+	
+	public Customer() {
+	}
+
+	public Customer(String lastName, String firstName, String email, String phone) {
 		super();
-		this.customerId = customerId;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.email = email;
 		this.phone = phone;
 	}
 
-	public int getCustomerId() {
-		return customerId;
+	public int getId() {
+		return id;
 	}
 
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getLastName() {
@@ -63,6 +71,12 @@ public class Customer {
 		this.firstName = firstName;
 	}
 
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + ", email=" + email
+				+ ", phone=" + phone + "]";
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -79,10 +93,4 @@ public class Customer {
 		this.phone = phone;
 	}
 
-	@Override
-	public String toString() {
-		return "Customer [customerId=" + customerId + ", lastName=" + lastName + ", firstName=" + firstName + ", email="
-				+ email + ", phone=" + phone + "]";
-	}
-	
 }

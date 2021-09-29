@@ -1,10 +1,15 @@
 package fa.training.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,29 +19,31 @@ public class Topping {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "topping_id")
-	private int toppingId;
-	
+	private int id;
+
 	@Column(name = "topping_name")
 	private String toppingName;
-	
+
 	@Column(name = "price")
 	private double price;
 
-	public Topping() {}
-	
-	public Topping(int toppingId, String toppingName, double price) {
+	@OneToMany(mappedBy = "topping",cascade = CascadeType.ALL)
+	private Set<OrderTopping> setToppingOrder = new HashSet<OrderTopping>();
+	public Topping() {
+	}
+
+	public Topping(String toppingName, double price) {
 		super();
-		this.toppingId = toppingId;
 		this.toppingName = toppingName;
 		this.price = price;
 	}
 
-	public int getToppingId() {
-		return toppingId;
+	public int getId() {
+		return id;
 	}
 
-	public void setToppingId(int toppingId) {
-		this.toppingId = toppingId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getToppingName() {
@@ -57,7 +64,7 @@ public class Topping {
 
 	@Override
 	public String toString() {
-		return "Topping [toppingId=" + toppingId + ", toppingName=" + toppingName + ", price=" + price + "]";
+		return "Topping [id=" + id + ", toppingName=" + toppingName + ", price=" + price + "]";
 	}
 	
 }

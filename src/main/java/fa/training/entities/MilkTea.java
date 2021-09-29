@@ -1,10 +1,15 @@
 package fa.training.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,29 +19,32 @@ public class MilkTea {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "milk_tea_id")
-	private int milkTeadId;
-	
+	private int id;
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "price")
 	private double price;
-
-	public MilkTea() {}
 	
-	public MilkTea(int milkTeadId, String name, double price) {
+	@OneToMany(mappedBy = "milkTea",cascade = CascadeType.ALL)
+	private Set<OrderMilkTea> setMilkTeaOrder = new HashSet<OrderMilkTea>();
+
+	public MilkTea() {
+	}
+
+	public MilkTea(String name, double price) {
 		super();
-		this.milkTeadId = milkTeadId;
 		this.name = name;
 		this.price = price;
 	}
 
-	public int getMilkTeadId() {
-		return milkTeadId;
+	public int getId() {
+		return id;
 	}
 
-	public void setMilkTeadId(int milkTeadId) {
-		this.milkTeadId = milkTeadId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -57,7 +65,8 @@ public class MilkTea {
 
 	@Override
 	public String toString() {
-		return "MilkTea [milkTeadId=" + milkTeadId + ", name=" + name + ", price=" + price + "]";
+		return "MilkTea [id=" + id + ", name=" + name + ", price=" + price + "]";
 	}
-	
+
+
 }
