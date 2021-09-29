@@ -10,13 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "order")
-public class Order {
+@Table(name = "order_bill")
+public class OrderBill {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "order_id")
-	private int orderId;
+	@Column(name = "order_bill_id")
+	private int orderBillId;
 	
 	@Column(name = "create_date")
 	private LocalDate createDate;
@@ -27,22 +27,22 @@ public class Order {
 	@Column(name = "total_price")
 	private double totalPrice;
 
-	public Order() {}
+	public OrderBill() {}
 	
-	public Order(int orderId, LocalDate createDate, boolean status, double totalPrice) {
+	public OrderBill(int orderBillId, LocalDate createDate, boolean status, double totalPrice) {
 		super();
-		this.orderId = orderId;
+		this.orderBillId = orderBillId;
 		this.createDate = createDate;
 		this.status = status;
 		this.totalPrice = totalPrice;
 	}
 
-	public int getOrderId() {
-		return orderId;
+	public int getOrderBillId() {
+		return orderBillId;
 	}
 
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
+	public void setOrderBillId(int orderBillId) {
+		this.orderBillId = orderBillId;
 	}
 
 	public LocalDate getCreateDate() {
@@ -71,7 +71,7 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [orderId=" + orderId + ", createDate=" + createDate + ", status=" + status + ", totalPrice="
+		return "OrderBill [orderBillId=" + orderBillId + ", createDate=" + createDate + ", status=" + status + ", totalPrice="
 				+ totalPrice + "]";
 	}
 	
