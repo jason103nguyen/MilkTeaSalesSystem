@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "order")
+@Table(name = "order_bill")
 public class Order {
 
 	@Id
@@ -57,6 +57,22 @@ public class Order {
 		this.totalPrice = totalPrice;
 	}
 
+	public Store getStore() {
+		return store;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -92,7 +108,8 @@ public class Order {
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", createDate=" + createDate + ", status=" + status + ", totalPrice=" + totalPrice
-				+ "]";
+				+ ", storeId=" + store.getId() + ", customerId=" + customer.getId() + "]";
 	}
 
+	
 }

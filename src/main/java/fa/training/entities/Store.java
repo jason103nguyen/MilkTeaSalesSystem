@@ -16,6 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Store")
 public class Store {
+	
 	@Id
 	@Column(name = "store_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +35,6 @@ public class Store {
 	private Set<Order> orders = new HashSet<Order>();
 	
 	public Store() {
-		
 	}
 
 	public Store(String storeName, String address, boolean isAvailable) {
@@ -81,7 +81,5 @@ public class Store {
 		return "Store [id=" + id + ", storeName=" + storeName + ", address=" + address + ", isAvailable=" + isAvailable
 				+ "]";
 	}
-	
-	
 
 }

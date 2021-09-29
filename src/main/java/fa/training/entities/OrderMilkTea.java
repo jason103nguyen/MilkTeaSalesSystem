@@ -7,7 +7,11 @@
  */
 package fa.training.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -15,6 +19,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "order_milktea")
 public class OrderMilkTea {
+	
+	@Id
+	@Column(name = "order_milktea_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	
 	@ManyToOne
 	@JoinColumn(name = "order_id")
@@ -60,7 +69,10 @@ public class OrderMilkTea {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "OrderMilkTea [id=" + id + ", orderId=" + order.getId() + ", milkTeaId=" + milkTea.getId() + ", quantity=" + quantity + "]";
+	}
 
 }

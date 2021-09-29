@@ -7,4 +7,5 @@ public class OrderDAO extends GenericDao<Order> {
     public OrderDAO() {
         super(Order.class);
     }
+    
 }

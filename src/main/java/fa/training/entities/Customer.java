@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Customer")
+@Table(name = "customer")
 public class Customer {
 
 	@Id
@@ -71,12 +71,6 @@ public class Customer {
 		this.firstName = firstName;
 	}
 
-	@Override
-	public String toString() {
-		return "Customer [id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + ", email=" + email
-				+ ", phone=" + phone + "]";
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -93,4 +87,10 @@ public class Customer {
 		this.phone = phone;
 	}
 
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + ", email=" + email
+				+ ", phone=" + phone + "]";
+	}
+	
 }

@@ -7,4 +7,5 @@ public class CustomerDAO extends GenericDao<Customer> {
     public CustomerDAO() {
         super(Customer.class);
     }
+    
 }

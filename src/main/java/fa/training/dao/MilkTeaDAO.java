@@ -7,4 +7,5 @@ public class MilkTeaDAO extends GenericDao<MilkTea> {
     public MilkTeaDAO() {
         super(MilkTea.class);
     }
+    
 }

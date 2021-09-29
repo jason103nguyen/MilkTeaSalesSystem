@@ -4,6 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import fa.training.utils.HibernateUtil;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -23,7 +25,7 @@ public class GenericDao<T> {
         Transaction transaction = null;
         Serializable id = null;
         try {
-            session = HibernateUtils.getSessionFactory().openSession();
+            session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
 
             id = session.save(entity);
@@ -45,7 +47,7 @@ public class GenericDao<T> {
         Transaction transaction = null;
         T readEntity = null;
         try {
-            session = HibernateUtils.getSessionFactory().openSession();
+            session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
 
             readEntity = session.get(entityClass, id);
@@ -67,7 +69,7 @@ public class GenericDao<T> {
         Transaction transaction = null;
         List<T> entityList = null;
         try {
-            session = HibernateUtils.getSessionFactory().openSession();
+            session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
 
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
@@ -98,7 +100,7 @@ public class GenericDao<T> {
         Session session = null;
         Transaction transaction = null;
         try {
-            session = HibernateUtils.getSessionFactory().openSession();
+            session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
 
             session.saveOrUpdate(entity);
@@ -119,7 +121,7 @@ public class GenericDao<T> {
         Transaction transaction = null;
         T deletedEntity = null;
         try {
-            session = HibernateUtils.getSessionFactory().openSession();
+            session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
 
             deletedEntity = session.get(entityClass, id);
@@ -135,4 +137,5 @@ public class GenericDao<T> {
             }
         }
     }
+    
 }

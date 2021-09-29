@@ -7,4 +7,5 @@ public class ToppingDAO extends GenericDao<Topping> {
     public ToppingDAO() {
         super(Topping.class);
     }
+    
 }

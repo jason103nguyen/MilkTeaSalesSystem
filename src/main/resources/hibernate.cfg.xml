@@ -12,9 +12,11 @@
         <property name="hibernate.hbm2ddl.auto">create</property>
         <property name="show_sql">true</property>
         <mapping class="fa.training.entities.Customer"/>
-        <mapping class="fa.training.entities.Milk"/>
+        <mapping class="fa.training.entities.MilkTea"/>
         <mapping class="fa.training.entities.Order"/>
         <mapping class="fa.training.entities.Store"/>
         <mapping class="fa.training.entities.Topping"/>
+        <mapping class="fa.training.entities.OrderTopping"/>
+        <mapping class="fa.training.entities.OrderMilkTea"/>
     </session-factory>
 </hibernate-configuration>
