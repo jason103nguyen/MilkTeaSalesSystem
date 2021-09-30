@@ -45,9 +45,9 @@ public class OrderTopping {
 	
 	public OrderTopping(OrderToppingDTO dto) {
 		this.id = dto.getId();
-		this.order = dto.getOrder();
+		this.order = new Order(dto.getOrderDto());
+		this.topping = new Topping(dto.getToppingDto());
 		this.quantity = dto.getQuantity();
-		this.topping = dto.getTopping();
 	}
 
 	public int getId() {
@@ -84,9 +84,9 @@ public class OrderTopping {
 	
 	public void loadFromDto(OrderToppingDTO dto) {
 		this.id = dto.getId();
-		this.order = dto.getOrder();
+		this.order = new Order(dto.getOrderDto());
+		this.topping = new Topping(dto.getToppingDto());
 		this.quantity = dto.getQuantity();
-		this.topping = dto.getTopping();
 	}
 
 	@Override

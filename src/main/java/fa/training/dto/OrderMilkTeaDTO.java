@@ -8,23 +8,23 @@ import fa.training.entities.OrderMilkTea;
 public class OrderMilkTeaDTO {
 
 	private int id;
-	private Order order;
-	private MilkTea milkTea;
+	private OrderDTO orderDto;
+	private MilkTeaDTO milkTeaDto;
 	private int quantity;
 	
 	public OrderMilkTeaDTO() {}
 
-	public OrderMilkTeaDTO(Order order, MilkTea milkTea, int quantity) {
+	public OrderMilkTeaDTO(OrderDTO orderDto, MilkTeaDTO milkTeaDto, int quantity) {
 		super();
-		this.order = order;
-		this.milkTea = milkTea;
+		this.orderDto = orderDto;
+		this.milkTeaDto = milkTeaDto;
 		this.quantity = quantity;
 	}
 	
 	public OrderMilkTeaDTO(OrderMilkTea entity) {
 		this.id = entity.getId();
-		this.milkTea = entity.getMilkTea();
-		this.order = entity.getOrder();
+		this.milkTeaDto = new MilkTeaDTO(entity.getMilkTea());
+		this.orderDto = new OrderDTO(entity.getOrder());
 		this.quantity = entity.getQuantity();
 	}
 
@@ -36,20 +36,20 @@ public class OrderMilkTeaDTO {
 		this.id = id;
 	}
 
-	public Order getOrder() {
-		return order;
+	public OrderDTO getOrderDto() {
+		return orderDto;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setOrderDto(OrderDTO orderDto) {
+		this.orderDto = orderDto;
 	}
 
-	public MilkTea getMilkTea() {
-		return milkTea;
+	public MilkTeaDTO getMilkTeaDto() {
+		return milkTeaDto;
 	}
 
-	public void setMilkTea(MilkTea milkTea) {
-		this.milkTea = milkTea;
+	public void setMilkTeaDto(MilkTeaDTO milkTeaDto) {
+		this.milkTeaDto = milkTeaDto;
 	}
 
 	public int getQuantity() {
@@ -62,14 +62,14 @@ public class OrderMilkTeaDTO {
 	
 	public void loadFromEntity(OrderMilkTea entity) {
 		this.id = entity.getId();
-		this.milkTea = entity.getMilkTea();
-		this.order = entity.getOrder();
+		this.milkTeaDto = new MilkTeaDTO(entity.getMilkTea());
+		this.orderDto = new OrderDTO(entity.getOrder());
 		this.quantity = entity.getQuantity();
 	}
 
 	@Override
 	public String toString() {
-		return "OrderMilkTea [id=" + id + ", orderId=" + order.getId() + ", milkTeaId=" + milkTea.getId() + ", quantity=" + quantity + "]";
+		return "OrderMilkTea [id=" + id + ", orderDtoId=" + orderDto.getId() + ", milkTeaDtoId=" + milkTeaDto.getId() + ", quantity=" + quantity + "]";
 	}
 
 }

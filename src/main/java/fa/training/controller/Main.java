@@ -21,19 +21,37 @@ import fa.training.entities.OrderTopping;
 import fa.training.entities.Store;
 import fa.training.entities.Topping;
 import fa.training.service.CustomerService;
+import fa.training.service.MilkTeaService;
+import fa.training.service.OrderMilkTeaService;
+import fa.training.service.OrderService;
+import fa.training.service.OrderToppingService;
+import fa.training.service.StoreService;
+import fa.training.service.ToppingService;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
-		CustomerDTO c_1 = new CustomerDTO("Phuong", "Nguyen", "jason103nguyen@gmail.com", "0328150855");
-		CustomerDTO c_2 = new CustomerDTO("XXX", "Nguyen", "jason104nguyen@gmail.com", "0328150856");
-		CustomerService cs = new CustomerService();
+		CustomerService  cs = new CustomerService();
+		MilkTeaService ms = new MilkTeaService();
+		StoreService ss = new StoreService();
+		ToppingService ts = new ToppingService();
+		OrderService os = new OrderService();
+		OrderToppingService ots = new OrderToppingService();
+		OrderMilkTeaService oms = new OrderMilkTeaService();
 		
-		cs.create(c_1);
-		cs.create(c_2);
+		cs.addFromExcel("MilkTeaSalesSystem.xlsx", "Customer");
+		ms.addFromExcel("MilkTeaSalesSystem.xlsx", "MilkTea");
+		ss.addFromExcel("MilkTeaSalesSystem.xlsx", "Store");
+		ts.addFromExcel("MilkTeaSalesSystem.xlsx", "Topping");
+		os.addFromExcel("MilkTeaSalesSystem.xlsx", "Order");
+		ots.addFromExcel("MilkTeaSalesSystem.xlsx", "OrderTopping");
+		oms.addFromExcel("MilkTeaSalesSystem.xlsx", "OrderMilkTea");
 		
-		List<CustomerDTO> list = cs.readAll();
-		System.out.println(Arrays.asList(list).toString());
+//		cs.create(c_1);
+//		cs.create(c_2);
+//		
+//		List<CustomerDTO> list = cs.readAll();
+//		System.out.println(Arrays.asList(list).toString());
 	}
 }

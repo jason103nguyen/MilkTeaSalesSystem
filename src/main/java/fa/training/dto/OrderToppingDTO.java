@@ -8,24 +8,24 @@ import fa.training.entities.Topping;
 public class OrderToppingDTO {
 
 	private int id;
-	private Order order;
-	private Topping topping;
+	private OrderDTO orderDto;
+	private ToppingDTO toppingDto;
 	private int quantity;
 	
 	public OrderToppingDTO() {}
 
-	public OrderToppingDTO(Order order, Topping topping, int quantity) {
+	public OrderToppingDTO(OrderDTO orderDto, ToppingDTO toppingDto, int quantity) {
 		super();
-		this.order = order;
-		this.topping = topping;
+		this.orderDto = orderDto;
+		this.toppingDto = toppingDto;
 		this.quantity = quantity;
 	}
 	
 	public OrderToppingDTO(OrderTopping entity) {
 		this.id = entity.getId();
-		this.order = entity.getOrder();
+		this.orderDto = new OrderDTO(entity.getOrder());
+		this.toppingDto = new ToppingDTO(entity.getTopping());
 		this.quantity = entity.getQuantity();
-		this.topping = entity.getTopping();
 	}
 
 	public int getId() {
@@ -36,20 +36,20 @@ public class OrderToppingDTO {
 		this.id = id;
 	}
 
-	public Order getOrder() {
-		return order;
+	public OrderDTO getOrderDto() {
+		return orderDto;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setOrderDto(OrderDTO orderDto) {
+		this.orderDto = orderDto;
 	}
 
-	public Topping getTopping() {
-		return topping;
+	public ToppingDTO getToppingDto() {
+		return toppingDto;
 	}
 
-	public void setTopping(Topping topping) {
-		this.topping = topping;
+	public void setToppingDto(ToppingDTO toppingDto) {
+		this.toppingDto = toppingDto;
 	}
 
 	public int getQuantity() {
@@ -62,14 +62,14 @@ public class OrderToppingDTO {
 
 	public void loadFromEntity(OrderTopping entity) {
 		this.id = entity.getId();
-		this.order = entity.getOrder();
+		this.orderDto = new OrderDTO(entity.getOrder());
+		this.toppingDto = new ToppingDTO(entity.getTopping());
 		this.quantity = entity.getQuantity();
-		this.topping = entity.getTopping();
 	}
 	
 	@Override
 	public String toString() {
-		return "OrderTopping [id=" + id + ", orderId=" + order.getId() + ", toppingId=" + topping.getId() + ", quantity=" + quantity + "]";
+		return "OrderTopping [id=" + id + ", orderDtoId=" + orderDto.getId() + ", toppingDtoId=" + toppingDto.getId() + ", quantity=" + quantity + "]";
 	}
 	
 }
