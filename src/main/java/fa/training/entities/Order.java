@@ -61,10 +61,10 @@ public class Order {
 	
 	public Order(OrderDTO dto) {
 		this.createDate = dto.getCreateDate();
-		this.customer = dto.getCustomer();
+		this.customer = new Customer(dto.getCustomerDto());
 		this.id = dto.getId();
 		this.status = dto.getStatus();
-		this.store = dto.getStore();
+		this.store = new Store(dto.getStoreDto());
 		this.totalPrice = dto.getTotalPrice();
 	}
 	
@@ -118,10 +118,10 @@ public class Order {
 	
 	public void loadFromDto(OrderDTO dto) {
 		this.createDate = dto.getCreateDate();
-		this.customer = dto.getCustomer();
+		this.customer = new Customer(dto.getCustomerDto());
 		this.id = dto.getId();
 		this.status = dto.getStatus();
-		this.store = dto.getStore();
+		this.store = new Store(dto.getStoreDto());
 		this.totalPrice = dto.getTotalPrice();
 	}
 
