@@ -21,31 +21,15 @@ import fa.training.service.ToppingService;
 public class Main {
 
 	public static void main(String[] args) {
-		
-		StoreDTO s_1 = new StoreDTO("Store_1", "HCM", true);
-		CustomerDTO c_1 = new CustomerDTO("Phuong", "Nguyen", "jason103nguyen@gmail.com", "0328150855");
-		OrderDTO o_1 = new OrderDTO(LocalDate.parse("30/09/2021", DateTimeFormatter.ofPattern("dd/MM/yyyy")) , true, 100000);
-		o_1.setCustomerDto(c_1);
-		o_1.setStoreDto(s_1);
-		ToppingDTO t_1 = new ToppingDTO("Banh plan", 10000);
-		
-		StoreService ss = new StoreService();
-		CustomerService cs = new CustomerService();
-		OrderService os = new OrderService();
-		ToppingService ts = new ToppingService();
-		
-		ss.create(s_1);
-		cs.create(c_1);
-		os.create(o_1);
-		ts.create(t_1);
-		os.addTopping(o_1, t_1, 10);
-		
-		
-//		CustomerDTO c_1 = new CustomerDTO();
-		
 //		Store store = new Store();
 //		StoreManagement sm = new StoreManagement();
 //		sm.createStoreFromExcel();
+//		CustomerManagement cm = new CustomerManagement();
+//		cm.createCustomerFromExcel();
+//		OrderManagement om = new OrderManagement();
+//		om.createStoreFromExcel();
+//		MilkTeaManagement mt = new MilkTeaManagement();
+//		mt.createMilkTeaFromExcel();
 	}
 
 }

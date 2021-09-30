@@ -20,20 +20,19 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
-import fa.training.entities.Customer;
+import fa.training.entities.Store;
+import fa.training.entities.Topping;
 
-public class CustomerExcel extends ReadFileExcel{
-	private final int COLUMN_INDEX_FIRST_NAME = 0;
-	private final int COLUMN_INDEX_LAST_NAME = 1;
-	private final int COLUMN_INDEX_EMAIL = 2;
-	private final int COLUMN_INDEX_PHONE = 3;
+public class ToppingExcel extends ReadFileExcel{
+	private final int COLUMN_INDEX_TOPPING = 0;
+	private final int COLUMN_INDEX_PRICE = 1;
 	
-	public List<Customer> readExcelCustomer (String excel) throws IOException{
-		List<Customer> listCustomer = new ArrayList<Customer>();
+	public List<Topping> readExcelTopping (String excel) throws IOException{
+		List<Topping> listTopping = new ArrayList<Topping>();
 		InputStream inputStream = new FileInputStream(new File(FILE));
 		Workbook wb = getFile(inputStream, excel);
-		//Indexsheet is 1
-		Sheet sheet = wb.getSheetAt(1);
+		//Indexsheet is 3
+		Sheet sheet = wb.getSheetAt(3);
 		Iterator<org.apache.poi.ss.usermodel.Row> iterator = sheet.iterator();
 		while (iterator.hasNext()) {
 			Row nextRow = iterator.next();
@@ -41,7 +40,7 @@ public class CustomerExcel extends ReadFileExcel{
 				continue;
 			}
 			Iterator<Cell> cellIterator = (nextRow).cellIterator();
-			Customer cus = new Customer();
+			Topping topping = new Topping();
 			while(cellIterator.hasNext()) {
 				Cell cell = cellIterator.next();
 				Object cellValue = getCellValue(cell);
@@ -50,25 +49,19 @@ public class CustomerExcel extends ReadFileExcel{
 				}
 				int columnIndex = cell.getColumnIndex();
 				switch (columnIndex) {
-				case COLUMN_INDEX_FIRST_NAME:
-					cus.setFirstName((String) getCellValue(cell));
+				case COLUMN_INDEX_TOPPING:
+					topping.setToppingName((String) getCellValue(cell));
 					break;
-				case COLUMN_INDEX_LAST_NAME:
-					cus.setLastName((String) getCellValue(cell));
-					break;
-				case COLUMN_INDEX_EMAIL:
-					cus.setEmail((String) getCellValue(cell));
-					break;
-				case COLUMN_INDEX_PHONE:
-					cus.setPhone((String) getCellValue(cell));
+				case COLUMN_INDEX_PRICE:
+					topping.setPrice((Double) getCellValue(cell));
 					break;
 					default:
 						break;
 				}
 			}
-			listCustomer.add(cus);
+			listTopping.add(topping);
 		}
-		return listCustomer;
+		return listTopping;
 	}
 
 }
