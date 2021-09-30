@@ -40,6 +40,12 @@ public class Topping {
 		this.toppingName = toppingName;
 		this.price = price;
 	}
+	
+	public Topping(ToppingDTO dto) {
+		this.id = dto.getId();
+		this.price = dto.getPrice();
+		this.toppingName = dto.getToppingName();
+	}
 
 	public int getId() {
 		return id;

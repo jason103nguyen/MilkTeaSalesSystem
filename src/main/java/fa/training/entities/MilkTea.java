@@ -40,6 +40,12 @@ public class MilkTea {
 		this.name = name;
 		this.price = price;
 	}
+	
+	public MilkTea(MilkTeaDTO dto) {
+		this.id = dto.getId();
+		this.name = dto.getName();
+		this.price = dto.getPrice();
+	}
 
 	public int getId() {
 		return id;

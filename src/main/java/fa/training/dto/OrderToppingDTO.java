@@ -20,6 +20,13 @@ public class OrderToppingDTO {
 		this.topping = topping;
 		this.quantity = quantity;
 	}
+	
+	public OrderToppingDTO(OrderTopping entity) {
+		this.id = entity.getId();
+		this.order = entity.getOrder();
+		this.quantity = entity.getQuantity();
+		this.topping = entity.getTopping();
+	}
 
 	public int getId() {
 		return id;

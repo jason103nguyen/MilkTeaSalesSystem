@@ -59,6 +59,15 @@ public class Order {
 		this.totalPrice = totalPrice;
 	}
 	
+	public Order(OrderDTO dto) {
+		this.createDate = dto.getCreateDate();
+		this.customer = dto.getCustomer();
+		this.id = dto.getId();
+		this.status = dto.getStatus();
+		this.store = dto.getStore();
+		this.totalPrice = dto.getTotalPrice();
+	}
+	
 	public Store getStore() {
 		return store;
 	}

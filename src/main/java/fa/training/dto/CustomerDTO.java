@@ -19,6 +19,14 @@ public class CustomerDTO {
 		this.email = email;
 		this.phone = phone;
 	}
+	
+	public CustomerDTO(Customer entity) {
+		this.id = entity.getId();
+		this.firstName = entity.getFirstName();
+		this.lastName = entity.getLastName();
+		this.phone = entity.getPhone();
+		this.email = entity.getEmail();
+	}
 
 	public int getId() {
 		return id;

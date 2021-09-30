@@ -20,6 +20,13 @@ public class OrderMilkTeaDTO {
 		this.milkTea = milkTea;
 		this.quantity = quantity;
 	}
+	
+	public OrderMilkTeaDTO(OrderMilkTea entity) {
+		this.id = entity.getId();
+		this.milkTea = entity.getMilkTea();
+		this.order = entity.getOrder();
+		this.quantity = entity.getQuantity();
+	}
 
 	public int getId() {
 		return id;

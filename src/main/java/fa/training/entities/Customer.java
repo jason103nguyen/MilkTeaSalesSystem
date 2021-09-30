@@ -48,6 +48,14 @@ public class Customer {
 		this.email = email;
 		this.phone = phone;
 	}
+	
+	public Customer(CustomerDTO dto) {
+		this.id = dto.getId();
+		this.firstName = dto.getFirstName();
+		this.lastName = dto.getLastName();
+		this.phone = dto.getPhone();
+		this.email = dto.getEmail();
+	}
 
 	public int getId() {
 		return id;

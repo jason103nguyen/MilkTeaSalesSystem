@@ -23,6 +23,15 @@ public class OrderDTO {
 		this.status = status;
 		this.totalPrice = totalPrice;
 	}
+	
+	public OrderDTO(Order entity) {
+		this.createDate = entity.getCreateDate();
+		this.customer = entity.getCustomer();
+		this.id = entity.getId();
+		this.status = entity.getStatus();
+		this.store = entity.getStore();
+		this.totalPrice = entity.getTotalPrice();
+	}
 
 	public Store getStore() {
 		return store;
