@@ -22,7 +22,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 import fa.training.entities.Customer;
 
-public class CustomerExcel extends ReadFileExcel{
+public class CustomerExcel extends ReadFileExcel {
 	private final int COLUMN_INDEX_FIRST_NAME = 0;
 	private final int COLUMN_INDEX_LAST_NAME = 1;
 	private final int COLUMN_INDEX_EMAIL = 2;

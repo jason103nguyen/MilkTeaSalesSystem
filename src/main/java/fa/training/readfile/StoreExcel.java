@@ -30,13 +30,13 @@ public class StoreExcel extends ReadFileExcel{
 	private final int COLUMN_INDEX_ADDRESS = 1;
 	private final int COLUMN_INDEX_IS_AVAILABLE = 2;
 	
-	public List<Store> readExcelStore (String excel) throws IOException{
+	public List<Store> readExcel (String excel, String sheetName) throws IOException{
 		List<Store> listStore = new ArrayList<Store>();
 		InputStream inputStream = new FileInputStream(new File(FILE));
 		Workbook wb = getFile(inputStream, excel);
 		//Indexsheet is 0
-		Sheet sheet = wb.getSheetAt(0);
-		Iterator<org.apache.poi.ss.usermodel.Row> iterator = sheet.iterator();
+		Sheet sheet = wb.getSheetAt(sheetName);
+		Iterator<Row> iterator = sheet.iterator();
 		while (iterator.hasNext()) {
 			Row nextRow = iterator.next();
 			if(nextRow.getRowNum() == 0) {

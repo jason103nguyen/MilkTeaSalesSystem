@@ -25,13 +25,9 @@ public class StoreManagement {
 	public void createStoreFromExcel() {
 		StoreExcel storeExcel = new StoreExcel();
 		try {
-			List<Store> listStore = storeExcel.readExcelStore(ReadFileExcel.FILE);
-			Store store = new Store();
-			for(Store s : listStore) {
-				store.setStoreName(s.getStoreName());
-				store.setAddress(s.getAddress());
-				store.setAvailable(s.isAvailable());
-				storeDao.create(store);
+			List<StoreDTO> listStore = storeExcel.readExcelStore(ReadFileExcel.FILE);
+			for(StoreDTO sdto : listStore) {
+				storeService.create(sdto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
