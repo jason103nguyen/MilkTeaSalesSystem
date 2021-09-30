@@ -20,6 +20,7 @@ public class StoreService {
             Store store = new Store(storeDTO);
             store.setId(0);
             int newId = (int) storeDAO.create(store);
+            storeDTO.setId(newId);
         } catch (Exception e) {
             e.printStackTrace();
             return false;

@@ -20,6 +20,7 @@ public class ToppingService {
             Topping topping = new Topping(toppingDTO);
             topping.setId(0);
             int newId = (int) toppingDAO.create(topping);
+            toppingDTO.setId(newId);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
