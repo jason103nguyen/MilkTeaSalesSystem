@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import fa.training.dto.CustomerDTO;
+
 @Entity
 @Table(name = "customer")
 public class Customer {
@@ -85,6 +87,14 @@ public class Customer {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	
+	public void loadFromDto(CustomerDTO dto) {
+		this.id = dto.getId();
+		this.firstName = dto.getFirstName();
+		this.lastName = dto.getLastName();
+		this.phone = dto.getPhone();
+		this.email = dto.getEmail();
 	}
 
 	@Override
