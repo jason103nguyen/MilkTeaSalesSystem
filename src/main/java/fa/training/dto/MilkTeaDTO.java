@@ -15,6 +15,12 @@ public class MilkTeaDTO {
 		this.name = name;
 		this.price = price;
 	}
+	
+	public MilkTeaDTO(MilkTea entity) {
+		this.id = entity.getId();
+		this.name = entity.getName();
+		this.price = entity.getPrice();
+	}
 
 	public int getId() {
 		return id;

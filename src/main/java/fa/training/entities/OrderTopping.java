@@ -42,6 +42,13 @@ public class OrderTopping {
 		this.topping = topping;
 		this.quantity = quantity;
 	}
+	
+	public OrderTopping(OrderToppingDTO dto) {
+		this.id = dto.getId();
+		this.order = dto.getOrder();
+		this.quantity = dto.getQuantity();
+		this.topping = dto.getTopping();
+	}
 
 	public int getId() {
 		return id;

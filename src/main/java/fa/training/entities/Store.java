@@ -44,6 +44,13 @@ public class Store {
 		this.address = address;
 		this.isAvailable = isAvailable;
 	}
+	
+	public Store(StoreDTO dto) {
+		this.address = dto.getAddress();
+		this.id = dto.getId();
+		this.isAvailable = dto.isAvailable();
+		this.storeName = dto.getStoreName();
+	}
 
 	public int getId() {
 		return id;

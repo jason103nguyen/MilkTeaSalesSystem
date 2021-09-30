@@ -15,6 +15,12 @@ public class ToppingDTO {
 		this.toppingName = toppingName;
 		this.price = price;
 	}
+	
+	public ToppingDTO(Topping entity) {
+		this.id = entity.getId();
+		this.price = entity.getPrice();
+		this.toppingName = entity.getToppingName();
+	}
 
 	public int getId() {
 		return id;

@@ -17,6 +17,13 @@ public class StoreDTO {
 		this.address = address;
 		this.isAvailable = isAvailable;
 	}
+	
+	public StoreDTO(Store entity) {
+		this.address = entity.getAddress();
+		this.id = entity.getId();
+		this.isAvailable = entity.isAvailable();
+		this.storeName = entity.getStoreName();
+	}
 
 	public int getId() {
 		return id;
