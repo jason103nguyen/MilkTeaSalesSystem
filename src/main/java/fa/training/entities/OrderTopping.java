@@ -1,10 +1,4 @@
-/*
- * (C) Copyright 2021 Fresher Academy. All Right Reserved .
- *
- * @author pc Pham Tran Gia Huy
- * @date Sep 29, 2021
- * @version 1.0
- */
+
 package fa.training.entities;
 
 
@@ -16,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import fa.training.dto.OrderToppingDTO;
 
 @Entity
 @Table(name = "order_topping")
@@ -47,6 +43,14 @@ public class OrderTopping {
 		this.quantity = quantity;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public Order getOrder() {
 		return order;
 	}
@@ -69,6 +73,13 @@ public class OrderTopping {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+	
+	public void loadFromDto(OrderToppingDTO dto) {
+		this.id = dto.getId();
+		this.order = dto.getOrder();
+		this.quantity = dto.getQuantity();
+		this.topping = dto.getTopping();
 	}
 
 	@Override

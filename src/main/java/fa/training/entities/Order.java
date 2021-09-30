@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import fa.training.dto.OrderDTO;
+
 @Entity
 @Table(name = "order_bill")
 public class Order {
@@ -56,7 +58,7 @@ public class Order {
 		this.status = status;
 		this.totalPrice = totalPrice;
 	}
-
+	
 	public Store getStore() {
 		return store;
 	}
@@ -89,7 +91,7 @@ public class Order {
 		this.createDate = createDate;
 	}
 
-	public boolean isStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 
@@ -104,6 +106,15 @@ public class Order {
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
+	
+	public void loadFromDto(OrderDTO dto) {
+		this.createDate = dto.getCreateDate();
+		this.customer = dto.getCustomer();
+		this.id = dto.getId();
+		this.status = dto.getStatus();
+		this.store = dto.getStore();
+		this.totalPrice = dto.getTotalPrice();
+	}
 
 	@Override
 	public String toString() {
@@ -111,5 +122,4 @@ public class Order {
 				+ ", storeId=" + store.getId() + ", customerId=" + customer.getId() + "]";
 	}
 
-	
 }

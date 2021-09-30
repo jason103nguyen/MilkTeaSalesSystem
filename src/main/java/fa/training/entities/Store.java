@@ -9,9 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import fa.training.dto.StoreDTO;
 
 @Entity
 @Table(name = "Store")
@@ -76,6 +77,13 @@ public class Store {
 		this.isAvailable = isAvailable;
 	}
 
+	public void loadFromDto(StoreDTO dto) {
+		this.address = dto.getAddress();
+		this.id = dto.getId();
+		this.isAvailable = dto.isAvailable();
+		this.storeName = dto.getStoreName();
+	}
+	
 	@Override
 	public String toString() {
 		return "Store [id=" + id + ", storeName=" + storeName + ", address=" + address + ", isAvailable=" + isAvailable

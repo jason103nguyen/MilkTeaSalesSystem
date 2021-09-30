@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import fa.training.dto.ToppingDTO;
+
 @Entity
 @Table(name = "topping")
 public class Topping {
@@ -61,6 +63,12 @@ public class Topping {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	
+	public void loadFromDto(ToppingDTO dto) {
+		this.id = dto.getId();
+		this.price = dto.getPrice();
+		this.toppingName = dto.getToppingName();
 	}
 
 	@Override

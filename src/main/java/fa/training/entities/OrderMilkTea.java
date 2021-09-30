@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import fa.training.dto.OrderMilkTeaDTO;
+
 @Entity
 @Table(name = "order_milktea")
 public class OrderMilkTea {
@@ -45,6 +47,14 @@ public class OrderMilkTea {
 		this.milkTea = milkTea;
 		this.quantity = quantity;
 	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public Order getOrder() {
 		return order;
@@ -68,6 +78,13 @@ public class OrderMilkTea {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+	
+	public void loadFromDto(OrderMilkTeaDTO dto) {
+		this.id = dto.getId();
+		this.milkTea = dto.getMilkTea();
+		this.order = dto.getOrder();
+		this.quantity = dto.getQuantity();
 	}
 
 	@Override

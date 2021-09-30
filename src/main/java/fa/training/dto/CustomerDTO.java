@@ -60,12 +60,12 @@ public class CustomerDTO {
 		this.phone = phone;
 	}
 	
-	public void loadFromEntity(Customer customer) {
-		this.id = customer.getId();
-		this.firstName = customer.getFirstName();
-		this.lastName = customer.getLastName();
-		this.phone = customer.getPhone();
-		this.email = customer.getEmail();
+	public void loadFromEntity(Customer entity) {
+		this.id = entity.getId();
+		this.firstName = entity.getFirstName();
+		this.lastName = entity.getLastName();
+		this.phone = entity.getPhone();
+		this.email = entity.getEmail();
 	}
 
 	@Override
