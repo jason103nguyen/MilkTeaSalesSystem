@@ -24,12 +24,6 @@ public class Main {
 		Store store = new Store();
 		StoreManagement sm = new StoreManagement();
 		sm.createStoreFromExcel();
-		CustomerManagement cm = new CustomerManagement();
-		cm.createCustomerFromExcel();
-		OrderManagement om = new OrderManagement();
-		om.createStoreFromExcel();
-		MilkTeaManagement mt = new MilkTeaManagement();
-		mt.createMilkTeaFromExcel();
 	}
 
 }

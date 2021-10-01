@@ -26,6 +26,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import fa.training.entities.Store;
 
 public class StoreExcel extends ReadFileExcel{
+//	private final int COLUMN_INDEX_ID = 0;
 	private final int COLUMN_INDEX_NAME = 0;
 	private final int COLUMN_INDEX_ADDRESS = 1;
 	private final int COLUMN_INDEX_IS_AVAILABLE = 2;
