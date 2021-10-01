@@ -20,7 +20,6 @@ public class MilkTeaService {
             MilkTea milkTea = new MilkTea(milkTeaDTO);
             milkTea.setId(0);
             int newId = (int) milkTeaDAO.create(milkTea);
-            milkTeaDTO.setId(newId);
         } catch (Exception e) {
             e.printStackTrace();
             return false;

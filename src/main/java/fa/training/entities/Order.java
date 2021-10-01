@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import fa.training.dto.CustomerDTO;
 import fa.training.dto.OrderDTO;
 
 @Entity
@@ -62,10 +61,10 @@ public class Order {
 	
 	public Order(OrderDTO dto) {
 		this.createDate = dto.getCreateDate();
-		this.customer = new Customer(dto.getCustomerDto());
+		this.customer = dto.getCustomer();
 		this.id = dto.getId();
 		this.status = dto.getStatus();
-		this.store = new Store(dto.getStoreDto());
+		this.store = dto.getStore();
 		this.totalPrice = dto.getTotalPrice();
 	}
 	
@@ -115,6 +114,15 @@ public class Order {
 
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+	
+	public void loadFromDto(OrderDTO dto) {
+		this.createDate = dto.getCreateDate();
+		this.customer = dto.getCustomer();
+		this.id = dto.getId();
+		this.status = dto.getStatus();
+		this.store = dto.getStore();
+		this.totalPrice = dto.getTotalPrice();
 	}
 
 	@Override

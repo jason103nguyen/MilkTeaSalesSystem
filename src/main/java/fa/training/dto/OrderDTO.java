@@ -12,8 +12,8 @@ public class OrderDTO {
 	private LocalDate createDate;
 	private boolean status;
 	private double totalPrice;
-	private StoreDTO storeDto;
-	private CustomerDTO customerDto;
+	private Store store;
+	private Customer customer;
 	
 	public OrderDTO() {}
 
@@ -26,27 +26,27 @@ public class OrderDTO {
 	
 	public OrderDTO(Order entity) {
 		this.createDate = entity.getCreateDate();
-		this.customerDto = new CustomerDTO(entity.getCustomer());
-		this.storeDto = new StoreDTO(entity.getStore());
+		this.customer = entity.getCustomer();
 		this.id = entity.getId();
 		this.status = entity.getStatus();
+		this.store = entity.getStore();
 		this.totalPrice = entity.getTotalPrice();
 	}
 
-	public StoreDTO getStoreDto() {
-		return storeDto;
+	public Store getStore() {
+		return store;
 	}
 
-	public void setStoreDto(StoreDTO storeDto) {
-		this.storeDto = storeDto;
+	public void setStore(Store store) {
+		this.store = store;
 	}
 
-	public CustomerDTO getCustomerDto() {
-		return customerDto;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setCustomerDto(CustomerDTO customerDto) {
-		this.customerDto = customerDto;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	public int getId() {
@@ -80,11 +80,20 @@ public class OrderDTO {
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
+	
+	public void loadFromEntity(Order entity) {
+		this.createDate = entity.getCreateDate();
+		this.customer = entity.getCustomer();
+		this.id = entity.getId();
+		this.status = entity.getStatus();
+		this.store = entity.getStore();
+		this.totalPrice = entity.getTotalPrice();
+	}
 
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", createDate=" + createDate + ", status=" + status + ", totalPrice=" + totalPrice
-				+ ", storeId=" + storeDto.getId() + ", customerId=" + customerDto.getId() + "]";
+				+ ", storeId=" + store.getId() + ", customerId=" + customer.getId() + "]";
 	}
 	
 }
