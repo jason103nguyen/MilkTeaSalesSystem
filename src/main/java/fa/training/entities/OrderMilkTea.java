@@ -49,8 +49,8 @@ public class OrderMilkTea {
 	
 	public OrderMilkTea(OrderMilkTeaDTO dto) {
 		this.id = dto.getId();
-		this.milkTea = dto.getMilkTea();
-		this.order = dto.getOrder();
+		this.milkTea = new MilkTea(dto.getMilkTeaDto());
+		this.order = new Order(dto.getOrderDto());
 		this.quantity = dto.getQuantity();
 	}
 	
