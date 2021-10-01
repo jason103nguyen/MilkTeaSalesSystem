@@ -2,9 +2,7 @@ package fa.training.dto;
 
 import java.time.LocalDate;
 
-import fa.training.entities.Customer;
 import fa.training.entities.Order;
-import fa.training.entities.Store;
 
 public class OrderDTO {
 
@@ -12,8 +10,8 @@ public class OrderDTO {
 	private LocalDate createDate;
 	private boolean status;
 	private double totalPrice;
-	private Store store;
-	private Customer customer;
+	private StoreDTO storeDto;
+	private CustomerDTO customerDto;
 	
 	public OrderDTO() {}
 
@@ -26,27 +24,27 @@ public class OrderDTO {
 	
 	public OrderDTO(Order entity) {
 		this.createDate = entity.getCreateDate();
-		this.customer = entity.getCustomer();
+		this.customerDto = new CustomerDTO(entity.getCustomer());
+		this.storeDto = new StoreDTO(entity.getStore());
 		this.id = entity.getId();
 		this.status = entity.getStatus();
-		this.store = entity.getStore();
 		this.totalPrice = entity.getTotalPrice();
 	}
 
-	public Store getStore() {
-		return store;
+	public StoreDTO getStoreDto() {
+		return storeDto;
 	}
 
-	public void setStore(Store store) {
-		this.store = store;
+	public void setStoreDto(StoreDTO storeDto) {
+		this.storeDto = storeDto;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public CustomerDTO getCustomerDto() {
+		return customerDto;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setCustomerDto(CustomerDTO customerDto) {
+		this.customerDto = customerDto;
 	}
 
 	public int getId() {
@@ -80,20 +78,11 @@ public class OrderDTO {
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	
-	public void loadFromEntity(Order entity) {
-		this.createDate = entity.getCreateDate();
-		this.customer = entity.getCustomer();
-		this.id = entity.getId();
-		this.status = entity.getStatus();
-		this.store = entity.getStore();
-		this.totalPrice = entity.getTotalPrice();
-	}
 
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", createDate=" + createDate + ", status=" + status + ", totalPrice=" + totalPrice
-				+ ", storeId=" + store.getId() + ", customerId=" + customer.getId() + "]";
+				+ ", storeId=" + storeDto.getId() + ", customerId=" + customerDto.getId() + "]";
 	}
 	
 }

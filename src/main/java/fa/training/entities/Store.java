@@ -83,13 +83,6 @@ public class Store {
 	public void setAvailable(boolean isAvailable) {
 		this.isAvailable = isAvailable;
 	}
-
-	public void loadFromDto(StoreDTO dto) {
-		this.address = dto.getAddress();
-		this.id = dto.getId();
-		this.isAvailable = dto.isAvailable();
-		this.storeName = dto.getStoreName();
-	}
 	
 	@Override
 	public String toString() {

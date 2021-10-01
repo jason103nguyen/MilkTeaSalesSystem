@@ -45,12 +45,6 @@ public class ToppingDTO {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-
-	public void loadFromEntity(Topping entity) {
-		this.id = entity.getId();
-		this.price = entity.getPrice();
-		this.toppingName = entity.getToppingName();
-	}
 	
 	@Override
 	public String toString() {

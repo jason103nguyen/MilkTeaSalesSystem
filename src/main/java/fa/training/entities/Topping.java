@@ -70,12 +70,6 @@ public class Topping {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	
-	public void loadFromDto(ToppingDTO dto) {
-		this.id = dto.getId();
-		this.price = dto.getPrice();
-		this.toppingName = dto.getToppingName();
-	}
 
 	@Override
 	public String toString() {

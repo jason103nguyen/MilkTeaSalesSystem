@@ -1,25 +1,39 @@
 package fa.training.service;
 
 import fa.training.dao.OrderDAO;
+import fa.training.dao.OrderToppingDAO;
 import fa.training.dto.OrderDTO;
+import fa.training.dto.ToppingDTO;
 import fa.training.entities.Order;
+import fa.training.entities.OrderTopping;
+import fa.training.entities.Topping;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderService {
 
-    private OrderDAO OrderDAO;
+    private OrderDAO orderDAO;
+    private OrderToppingDAO orderToppingDAO;
 
     public OrderService() {
-        this.OrderDAO = new OrderDAO();
+        this.orderDAO = new OrderDAO();
+        this.orderToppingDAO = new OrderToppingDAO();
+    }
+    
+    public void addTopping(OrderDTO orderDTO, ToppingDTO toppingDTO, int quantity) {
+    	Order order = new Order(orderDTO);
+    	Topping topping = new Topping(toppingDTO);
+    	OrderTopping orderTopping = new OrderTopping(order, topping, quantity);
+    	orderToppingDAO.create(orderTopping);
     }
 
     public boolean create(OrderDTO orderDTO) {
         try {
             Order order = new Order(orderDTO);
             order.setId(0);
-            int newId = (int) OrderDAO.create(order);
+            int newId = (int) orderDAO.create(order);
+            orderDTO.setId(newId);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -30,7 +44,7 @@ public class OrderService {
     public OrderDTO readOne(int id) {
         OrderDTO orderDTO = null;
         try {
-            Order order = OrderDAO.readOne(id);
+            Order order = orderDAO.readOne(id);
             if (order != null) {
                 orderDTO = new OrderDTO(order);
             }
@@ -41,7 +55,7 @@ public class OrderService {
     }
 
     public List<OrderDTO> readAll() {
-        List<Order> orderList = OrderDAO.readAll();
+        List<Order> orderList = orderDAO.readAll();
         List<OrderDTO> orderDTOList = new ArrayList<>();
         for (Order order : orderList) {
             orderDTOList.add(new OrderDTO(order));
@@ -52,7 +66,7 @@ public class OrderService {
     public boolean update(OrderDTO orderDTO) {
         try {
             Order order = new Order(orderDTO);
-            OrderDAO.update(order);
+            orderDAO.update(order);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -62,7 +76,7 @@ public class OrderService {
 
     public boolean delete(int id) {
         try {
-            OrderDAO.delete(id);
+            orderDAO.delete(id);
         } catch (Exception e) {
             e.printStackTrace();
             return false;

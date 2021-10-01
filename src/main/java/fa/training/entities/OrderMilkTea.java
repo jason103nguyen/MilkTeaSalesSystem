@@ -38,7 +38,6 @@ public class OrderMilkTea {
 	private int quantity;
 	
 	public OrderMilkTea() {
-		
 	}
 
 	public OrderMilkTea(Order order, MilkTea milkTea, int quantity) {
@@ -85,13 +84,6 @@ public class OrderMilkTea {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-	}
-	
-	public void loadFromDto(OrderMilkTeaDTO dto) {
-		this.id = dto.getId();
-		this.milkTea = dto.getMilkTea();
-		this.order = dto.getOrder();
-		this.quantity = dto.getQuantity();
 	}
 
 	@Override

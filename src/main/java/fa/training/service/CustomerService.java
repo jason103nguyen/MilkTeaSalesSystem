@@ -20,6 +20,7 @@ public class CustomerService {
             Customer customer = new Customer(customerDTO);
             customer.setId(0);
             int newId = (int) customerDAO.create(customer);
+            customerDTO.setId(newId);
         } catch (Exception e) {
             e.printStackTrace();
             return false;

@@ -70,12 +70,6 @@ public class MilkTea {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	
-	public void loadFromDto(MilkTeaDTO dto) {
-		this.id = dto.getId();
-		this.name = dto.getName();
-		this.price = dto.getPrice();
-	}
 
 	@Override
 	public String toString() {

@@ -59,13 +59,6 @@ public class OrderToppingDTO {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
-	public void loadFromEntity(OrderTopping entity) {
-		this.id = entity.getId();
-		this.order = entity.getOrder();
-		this.quantity = entity.getQuantity();
-		this.topping = entity.getTopping();
-	}
 	
 	@Override
 	public String toString() {

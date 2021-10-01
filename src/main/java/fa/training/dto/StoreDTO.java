@@ -56,13 +56,6 @@ public class StoreDTO {
 	public void setAvailable(boolean isAvailable) {
 		this.isAvailable = isAvailable;
 	}
-
-	public void loadFromEntity(Store entity) {
-		this.address = entity.getAddress();
-		this.id = entity.getId();
-		this.isAvailable = entity.isAvailable();
-		this.storeName = entity.getStoreName();
-	}
 	
 	@Override
 	public String toString() {

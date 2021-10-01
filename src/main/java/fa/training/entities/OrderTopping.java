@@ -33,7 +33,6 @@ public class OrderTopping {
 	private int quantity;
 	
 	public OrderTopping() {
-		
 	}
 
 	public OrderTopping(Order order, Topping topping, int quantity) {
@@ -80,13 +79,6 @@ public class OrderTopping {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-	}
-	
-	public void loadFromDto(OrderToppingDTO dto) {
-		this.id = dto.getId();
-		this.order = dto.getOrder();
-		this.quantity = dto.getQuantity();
-		this.topping = dto.getTopping();
 	}
 
 	@Override

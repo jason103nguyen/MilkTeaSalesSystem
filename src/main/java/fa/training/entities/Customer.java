@@ -96,14 +96,6 @@ public class Customer {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
-	public void loadFromDto(CustomerDTO dto) {
-		this.id = dto.getId();
-		this.firstName = dto.getFirstName();
-		this.lastName = dto.getLastName();
-		this.phone = dto.getPhone();
-		this.email = dto.getEmail();
-	}
 
 	@Override
 	public String toString() {

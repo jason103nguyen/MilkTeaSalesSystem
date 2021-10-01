@@ -59,13 +59,6 @@ public class OrderMilkTeaDTO {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	public void loadFromEntity(OrderMilkTea entity) {
-		this.id = entity.getId();
-		this.milkTea = entity.getMilkTea();
-		this.order = entity.getOrder();
-		this.quantity = entity.getQuantity();
-	}
 
 	@Override
 	public String toString() {

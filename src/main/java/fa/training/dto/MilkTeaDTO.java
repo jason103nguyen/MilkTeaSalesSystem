@@ -45,12 +45,6 @@ public class MilkTeaDTO {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	
-	public void loadFromEntity(MilkTea entity) {
-		this.id = entity.getId();
-		this.name = entity.getName();
-		this.price = entity.getPrice();
-	}
 
 	@Override
 	public String toString() {
