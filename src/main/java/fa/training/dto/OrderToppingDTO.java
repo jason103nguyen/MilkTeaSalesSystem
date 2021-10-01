@@ -1,9 +1,6 @@
-
 package fa.training.dto;
 
-import fa.training.entities.Order;
 import fa.training.entities.OrderTopping;
-import fa.training.entities.Topping;
 
 public class OrderToppingDTO {
 

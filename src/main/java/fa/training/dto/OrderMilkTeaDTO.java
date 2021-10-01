@@ -1,8 +1,5 @@
-
 package fa.training.dto;
 
-import fa.training.entities.MilkTea;
-import fa.training.entities.Order;
 import fa.training.entities.OrderMilkTea;
 
 public class OrderMilkTeaDTO {

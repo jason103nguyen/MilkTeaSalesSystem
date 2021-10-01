@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import fa.training.dto.CustomerDTO;
 import fa.training.dto.OrderDTO;
 
 @Entity
