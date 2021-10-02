@@ -1,3 +1,4 @@
+
 package fa.training.dto;
 
 import fa.training.entities.OrderTopping;
@@ -56,10 +57,18 @@ public class OrderToppingDTO {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
+	public void loadFromEntity(OrderTopping entity) {
+		this.id = entity.getId();
+		this.orderDto = new OrderDTO(entity.getOrder());
+		this.toppingDto = new ToppingDTO(entity.getTopping());
+		this.quantity = entity.getQuantity();
+	}
 	
 	@Override
 	public String toString() {
 		return "OrderTopping [id=" + id + ", orderDtoId=" + orderDto.getId() + ", toppingDtoId=" + toppingDto.getId() + ", quantity=" + quantity + "]";
 	}
+
 	
 }
