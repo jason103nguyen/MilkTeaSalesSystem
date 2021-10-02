@@ -1,5 +1,7 @@
 package fa.training.controller;
 
+import java.util.Scanner;
+
 import fa.training.service.CustomerService;
 import fa.training.service.MilkTeaService;
 import fa.training.service.OrderMilkTeaService;
@@ -11,41 +13,54 @@ import fa.training.service.ToppingService;
 public class Main {
 
 	public static void main(String[] args) throws Exception {
-//		
-//		StoreDTO s_1 = new StoreDTO("Store_1", "HCM", true);
-//		CustomerDTO c_1 = new CustomerDTO("Phuong", "Nguyen", "jason103nguyen@gmail.com", "0328150855");
-//		OrderDTO o_1 = new OrderDTO(LocalDate.parse("30/09/2021", DateTimeFormatter.ofPattern("dd/MM/yyyy")) , true, 100000);
-//		o_1.setCustomerDto(c_1);
-//		o_1.setStoreDto(s_1);
-//		ToppingDTO t_1 = new ToppingDTO("Banh plan", 10000);
-//		
-//		StoreService ss = new StoreService();
-//		CustomerService cs = new CustomerService();
-//		OrderService os = new OrderService();
-//		ToppingService ts = new ToppingService();
-//		
-//		ss.create(s_1);
-//		cs.create(c_1);
-//		os.create(o_1);
-//		ts.create(t_1);
-//		os.addTopping(o_1, t_1, 10);
-		
-		CustomerService  cs = new CustomerService();
-		MilkTeaService ms = new MilkTeaService();
-		StoreService ss = new StoreService();
-		ToppingService ts = new ToppingService();
-		OrderService os = new OrderService();
-		OrderToppingService ots = new OrderToppingService();
-		OrderMilkTeaService oms = new OrderMilkTeaService();
-		
-		cs.addFromExcel("MilkTeaSalesSystem.xlsx", "Customer");
-		ms.addFromExcel("MilkTeaSalesSystem.xlsx", "MilkTea");
-		ss.addFromExcel("MilkTeaSalesSystem.xlsx", "Store");
-		ts.addFromExcel("MilkTeaSalesSystem.xlsx", "Topping");
-		os.addFromExcel("MilkTeaSalesSystem.xlsx", "Order");
-		ots.addFromExcel("MilkTeaSalesSystem.xlsx", "OrderTopping");
-		oms.addFromExcel("MilkTeaSalesSystem.xlsx", "OrderMilkTea");
-		
+
+		CustomerService customerService = new CustomerService();
+		MilkTeaService milkTeaService = new MilkTeaService();
+		StoreService storeService = new StoreService();
+		ToppingService toppingService = new ToppingService();
+		OrderService orderService = new OrderService();
+		OrderToppingService orderToppingService = new OrderToppingService();
+		OrderMilkTeaService orderMilkTeaService = new OrderMilkTeaService();
+
+		while (true) {
+
+			/* Get option from user */
+			String sellection = "";
+			System.out.println("************** Welcome to program \"MILK TEA SALES SYSTEM\" **************");
+			System.out.println("Please choose the option ");
+			System.out.println("1. Auto insert data");
+			System.out.println("exit: To close program");
+			System.out.print("Your choose: ");
+			sellection = getString();
+
+			switch (sellection) {
+			case "1":
+
+				customerService.addFromExcel("MilkTeaSalesSystem.xlsx", "Customer");
+				milkTeaService.addFromExcel("MilkTeaSalesSystem.xlsx", "MilkTea");
+				storeService.addFromExcel("MilkTeaSalesSystem.xlsx", "Store");
+				toppingService.addFromExcel("MilkTeaSalesSystem.xlsx", "Topping");
+				orderService.addFromExcel("MilkTeaSalesSystem.xlsx", "Order");
+				orderToppingService.addFromExcel("MilkTeaSalesSystem.xlsx", "OrderTopping");
+				orderMilkTeaService.addFromExcel("MilkTeaSalesSystem.xlsx", "OrderMilkTea");
+				break;
+
+			case "exit":
+				return;
+
+			default:
+				System.out.println("Wrong intput!");
+				break;
+			}
+		}
+	}
+
+	public static String getString() {
+
+		String result = "";
+		Scanner scan = new Scanner(System.in);
+		result = scan.nextLine();
+		return result;
 	}
 
 }
