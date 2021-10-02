@@ -23,4 +23,14 @@ public class HibernateUtil {
 		HibernateUtil.sessionFactory = sessionFactory;
 	}
 	
+	static {
+		refreshNewSessionFactory();
+	}
+	
+	public static void refreshNewSessionFactory() {
+		Configuration cfg = new Configuration();
+		cfg.configure();
+		sessionFactory = cfg.buildSessionFactory();
+	}
+	
 }
