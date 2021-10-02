@@ -1,11 +1,13 @@
 package fa.training.entities;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,7 +37,7 @@ public class Customer {
 	@Column(name = "phone", unique = true)
 	private String phone;
 
-	@OneToMany(mappedBy = "customer" , cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer" , cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Order> orders = new HashSet<Order>();
 	
 	public Customer() {
@@ -95,6 +97,25 @@ public class Customer {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(email, firstName, id, lastName, orders, phone);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Customer other = (Customer) obj;
+		return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName) && id == other.id
+				&& Objects.equals(lastName, other.lastName) && Objects.equals(orders, other.orders)
+				&& Objects.equals(phone, other.phone);
 	}
 
 	@Override

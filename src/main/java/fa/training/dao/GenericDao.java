@@ -29,7 +29,7 @@ public class GenericDao<T> {
             transaction = session.beginTransaction();
 
             id = session.save(entity);
-
+            
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();

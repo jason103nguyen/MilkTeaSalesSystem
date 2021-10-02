@@ -1,6 +1,7 @@
 package fa.training.entities;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -84,6 +85,24 @@ public class Store {
 		this.isAvailable = isAvailable;
 	}
 	
+	@Override
+	public int hashCode() {
+		return Objects.hash(address, id, isAvailable, orders, storeName);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Store other = (Store) obj;
+		return Objects.equals(address, other.address) && id == other.id && isAvailable == other.isAvailable
+				&& Objects.equals(orders, other.orders) && Objects.equals(storeName, other.storeName);
+	}
+
 	@Override
 	public String toString() {
 		return "Store [id=" + id + ", storeName=" + storeName + ", address=" + address + ", isAvailable=" + isAvailable

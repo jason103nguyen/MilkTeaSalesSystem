@@ -2,11 +2,13 @@ package fa.training.entities;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,11 +43,11 @@ public class Order {
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	private Set<OrderMilkTea> setOrderMilkTea = new HashSet<OrderMilkTea>();
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "store_id")
 	private Store store;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	
@@ -114,6 +116,25 @@ public class Order {
 
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(createDate, customer, id, status, store, totalPrice);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Order other = (Order) obj;
+		return Objects.equals(createDate, other.createDate) && Objects.equals(customer, other.customer)
+				&& id == other.id && status == other.status && Objects.equals(store, other.store)
+				&& Double.doubleToLongBits(totalPrice) == Double.doubleToLongBits(other.totalPrice);
 	}
 
 	@Override
