@@ -130,7 +130,7 @@ public class CustomerService {
         return true;
     }
     
-    public void findByField(String field, String value) {
+    public void likeOperator(String field, String value) {
     	
     	List<Customer> customerList = customerDAO.likeOperator(field, value);
     	List<CustomerDTO> customerDtoList = new ArrayList<>();
@@ -150,7 +150,7 @@ public class CustomerService {
 		}
     }
 
-	public void findCustomer(String pathFile, String sheetName) {
+	public void find(String pathFile, String sheetName) {
 		
 		Workbook workbook = ServiceUtil.convertXLSXtoWorkbook(pathFile);
 		Sheet sheet = workbook.getSheet(sheetName);
@@ -167,10 +167,10 @@ public class CustomerService {
 			mapStr.put(row.getCell(0).toString(), row.getCell(1).toString());
 		}
 		
-		findByField("phone", mapStr.get("Phone"));
-		findByField("email", mapStr.get("Email"));
-		findByField("firstName", mapStr.get("FirstName"));
-		findByField("lastName", mapStr.get("LastName"));
+		likeOperator("phone", mapStr.get("Phone"));
+		likeOperator("email", mapStr.get("Email"));
+		likeOperator("firstName", mapStr.get("FirstName"));
+		likeOperator("lastName", mapStr.get("LastName"));
 		
 	}
 

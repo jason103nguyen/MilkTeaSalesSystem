@@ -129,4 +129,64 @@ public class StoreService {
         return true;
     }
 
+    public void likeOperator(String field, String value) {
+    	
+    	List<Store> storeList = storeDAO.likeOperator(field, value);
+    	List<StoreDTO> storeDtoList = new ArrayList<>();
+    	
+    	if (storeList.isEmpty()) {
+    		System.out.println(String.format("The Store with %s: %s doesn't exist!",field, value));
+    		return;
+    	}
+    	
+    	for (Store store : storeList) {
+    		storeDtoList.add(new StoreDTO(store));
+		}
+    	
+    	System.out.println(String.format("Info of Stores with %s: %s is: ", field, value));
+		for (StoreDTO storeDto : storeDtoList) {
+			System.out.println(storeDto.toString());
+		}
+    }
+    
+    public void equalOperator(String field, Boolean value) {
+    	List<Store> storeList = storeDAO.equalOperator(field, value);
+    	List<StoreDTO> storeDtoList = new ArrayList<>();
+    	
+    	if (storeList.isEmpty()) {
+    		System.out.println(String.format("The Store with IsAvailable: %s doesn't exist!", String.valueOf(value)));
+    		return;
+    	}
+    	
+    	for (Store store : storeList) {
+    		storeDtoList.add(new StoreDTO(store));
+		}
+    	
+    	System.out.println(String.format("Info of Stores with IsAvaibale: %s is: ", String.valueOf(value)));
+		for (StoreDTO storeDto : storeDtoList) {
+			System.out.println(storeDto.toString());
+		}
+    }
+
+	public void find(String pathFile, String sheetName) {
+		
+		Workbook workbook = ServiceUtil.convertXLSXtoWorkbook(pathFile);
+		Sheet sheet = workbook.getSheet(sheetName);
+		
+		Map<String, String> mapStr = new HashMap<String, String>();
+		
+		int index = 0;
+		for(Row row : sheet) {
+			if (index == 0) {
+				index++;
+				continue;
+			}
+			
+			mapStr.put(row.getCell(0).toString(), row.getCell(1).toString());
+		}
+		
+		likeOperator("storeName", mapStr.get("StoreName"));
+		likeOperator("address", mapStr.get("Address"));
+		equalOperator("isAvailable",Boolean.valueOf(mapStr.get("IsAvailable")));
+	}
 }

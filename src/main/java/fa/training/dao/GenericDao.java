@@ -164,4 +164,82 @@ public class GenericDao<T> {
         }
         return entityList;
     }
+
+    public <V> List<T> equalOperator(String field, V v) {
+		Session session = null;
+        List<T> orderList = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<T> query = criteriaBuilder.createQuery(this.entityClass);
+            Root<T> root = query.from(this.entityClass);
+
+            query.select(root);
+            query.where(criteriaBuilder.equal(root.get(field), v));
+
+            Query<T> q = session.createQuery(query);
+
+            orderList = q.getResultList();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return orderList;
+	}
+    
+    public <Y extends Comparable<? super Y>> List<T> greaterThanOperator(String field, Y value) {
+		Session session = null;
+        List<T> orderList = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<T> query = criteriaBuilder.createQuery(this.entityClass);
+            Root<T> root = query.from(this.entityClass);
+
+            query.select(root);
+            query.where(criteriaBuilder.greaterThanOrEqualTo(root.get(field), value));
+
+            Query<T> q = session.createQuery(query);
+
+            orderList = q.getResultList();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return orderList;
+	}
+    
+    public <Y extends Comparable<? super Y>> List<T> lessThanOperator(String field, Y value) {
+		Session session = null;
+        List<T> orderList = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<T> query = criteriaBuilder.createQuery(this.entityClass);
+            Root<T> root = query.from(this.entityClass);
+
+            query.select(root);
+            query.where(criteriaBuilder.lessThanOrEqualTo(root.get(field), value));
+
+            Query<T> q = session.createQuery(query);
+
+            orderList = q.getResultList();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return orderList;
+	}
 }

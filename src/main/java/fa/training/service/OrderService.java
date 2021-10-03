@@ -66,7 +66,7 @@ public void addFromExcel(String pathFile, String sheetName) throws Exception {
 			}
 			
 			Map<String, String> mapRow = new HashMap<String, String>();
-			mapRow.put("MilkTeaOrderId", row.getCell(0).toString());
+			mapRow.put("OrderOrderId", row.getCell(0).toString());
 			mapRow.put("CreateDate", row.getCell(1).toString());
 			mapRow.put("Status", row.getCell(2).toString());
 			mapRow.put("TotalPrice", row.getCell(3).toString());
@@ -81,7 +81,7 @@ public void addFromExcel(String pathFile, String sheetName) throws Exception {
 		for(Map<String, String> objectStr : listStr) {
 			OrderDTO orderDTO = new OrderDTO();
 			
-			orderDTO.setId((int)Double.parseDouble(objectStr.get("MilkTeaOrderId")));
+			orderDTO.setId((int)Double.parseDouble(objectStr.get("OrderOrderId")));
 			orderDTO.setCreateDate(LocalDate.parse(objectStr.get("CreateDate"), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 			orderDTO.setStatus(Boolean.parseBoolean(objectStr.get("Status")));
 			orderDTO.setTotalPrice(Float.parseFloat(objectStr.get("TotalPrice")));
@@ -157,5 +157,90 @@ public void addFromExcel(String pathFile, String sheetName) throws Exception {
         }
         return true;
     }
+    
+    public <V> void equalOperator(String field, V value) {
+    	
+    	List<Order> orderList = orderDAO.equalOperator(field, value);
+    	List<OrderDTO> orderDtoList = new ArrayList<>();
+    	
+    	if (orderList.isEmpty()) {
+    		System.out.println(String.format("The Order with %s: %s doesn't exist!", field, String.valueOf(value)));
+    		return;
+    	}
+    	
+    	for (Order order : orderList) {
+    		orderDtoList.add(new OrderDTO(order));
+		}
+    	
+    	System.out.println(String.format("Info of Orders with %s: %s is: ", field, String.valueOf(value)));
+		for (OrderDTO orderDto : orderDtoList) {
+			System.out.println(orderDto.toString());
+		}
+    }
+    
+    public void totalPriceGreaterThen(double value) {
+    	
+    	List<Order> orderList = orderDAO.greaterThanOperator("totalPrice", value);
+    	List<OrderDTO> orderDtoList = new ArrayList<>();
+    	
+    	if (orderList.isEmpty()) {
+    		System.out.println(String.format("The Order with %s: %s doesn't exist!", "TotalPrice", String.valueOf(value)));
+    		return;
+    	}
+    	
+    	for (Order order : orderList) {
+    		orderDtoList.add(new OrderDTO(order));
+		}
+    	
+    	System.out.println(String.format("Info of Orders with %s: %s is: ", "TotalPrice greater than", String.valueOf(value)));
+		for (OrderDTO orderDto : orderDtoList) {
+			System.out.println(orderDto.toString());
+		}
+    }
+    
+    public void totalPriceLessThen(double value) {
+    	
+    	List<Order> orderList = orderDAO.lessThanOperator("totalPrice", value);
+    	List<OrderDTO> orderDtoList = new ArrayList<>();
+    	
+    	if (orderList.isEmpty()) {
+    		System.out.println(String.format("The Order with %s: %s doesn't exist!", "TotalPrice less than", String.valueOf(value)));
+    		return;
+    	}
+    	
+    	for (Order order : orderList) {
+    		orderDtoList.add(new OrderDTO(order));
+		}
+    	
+    	System.out.println(String.format("Info of Orders with %s: %s is: ", "TotalPrice less than", String.valueOf(value)));
+		for (OrderDTO orderDto : orderDtoList) {
+			System.out.println(orderDto.toString());
+		}
+    }
+
+	public void find(String pathFile, String sheetName) {
+		
+		Workbook workbook = ServiceUtil.convertXLSXtoWorkbook(pathFile);
+		Sheet sheet = workbook.getSheet(sheetName);
+		
+		Map<String, String> mapStr = new HashMap<String, String>();
+		
+		int index = 0;
+		for(Row row : sheet) {
+			if (index == 0) {
+				index++;
+				continue;
+			}
+			
+			mapStr.put(row.getCell(0).toString(), row.getCell(1).toString());
+		}
+		
+		equalOperator("createDate", LocalDate.parse(mapStr.get("CreateDate"),DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		equalOperator("status", Boolean.valueOf(mapStr.get("Status")));
+		totalPriceGreaterThen(Double.valueOf(mapStr.get("TotalPrice[greater than or equal]")));
+		totalPriceLessThen(Double.valueOf(mapStr.get("TotalPrice[less than or equal]")));
+		equalOperator("store", Integer.valueOf(mapStr.get("StoreId")));
+		equalOperator("customer", Integer.valueOf(mapStr.get("CustomerId")));
+	}
 
 }

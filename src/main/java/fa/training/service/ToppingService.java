@@ -128,4 +128,85 @@ public class ToppingService {
         return true;
     }
 
+	public void likeOperator(String field, String value) {
+    	
+    	List<Topping> toppingList = toppingDAO.likeOperator(field, value);
+    	List<ToppingDTO> toppingDtoList = new ArrayList<>();
+    	
+    	if (toppingList.isEmpty()) {
+    		System.out.println(String.format("The Topping with %s: %s doesn't exist!",field, value));
+    		return;
+    	}
+    	
+    	for (Topping topping : toppingList) {
+    		toppingDtoList.add(new ToppingDTO(topping));
+		}
+    	
+    	System.out.println(String.format("Info of Topping with %s: %s is: ", field, value));
+		for (ToppingDTO toppingDto : toppingDtoList) {
+			System.out.println(toppingDto.toString());
+		}
+    }
+
+    public void priceGreaterThen(double value) {
+    	
+    	List<Topping> toppingList = toppingDAO.greaterThanOperator("price", value);
+    	List<ToppingDTO> toppingDtoList = new ArrayList<>();
+    	
+    	if (toppingList.isEmpty()) {
+    		System.out.println(String.format("The Topping with %s: %s doesn't exist!", "Price greater than or equal", String.valueOf(value)));
+    		return;
+    	}
+    	
+    	for (Topping topping : toppingList) {
+    		toppingDtoList.add(new ToppingDTO(topping));
+		}
+    	
+    	System.out.println(String.format("Info of Topping with %s: %s is: ", "Price greater than or equal", String.valueOf(value)));
+		for (ToppingDTO toppingDto : toppingDtoList) {
+			System.out.println(toppingDto.toString());
+		}
+    }
+    
+    public void priceLessThen(double value) {
+    	
+    	List<Topping> toppingList = toppingDAO.lessThanOperator("price", value);
+    	List<ToppingDTO> toppingDtoList = new ArrayList<>();
+    	
+    	if (toppingList.isEmpty()) {
+    		System.out.println(String.format("The Topping with %s: %s doesn't exist!", "Price less than or equal", String.valueOf(value)));
+    		return;
+    	}
+    	
+    	for (Topping topping : toppingList) {
+    		toppingDtoList.add(new ToppingDTO(topping));
+		}
+    	
+    	System.out.println(String.format("Info of Topping with %s: %s is: ", "Price less than or equal", String.valueOf(value)));
+		for (ToppingDTO toppingDto : toppingDtoList) {
+			System.out.println(toppingDto.toString());
+		}
+    }
+
+	public void find(String pathFile, String sheetName) {
+		
+		Workbook workbook = ServiceUtil.convertXLSXtoWorkbook(pathFile);
+		Sheet sheet = workbook.getSheet(sheetName);
+		
+		Map<String, String> mapStr = new HashMap<String, String>();
+		
+		int index = 0;
+		for(Row row : sheet) {
+			if (index == 0) {
+				index++;
+				continue;
+			}
+			
+			mapStr.put(row.getCell(0).toString(), row.getCell(1).toString());
+		}
+		
+		likeOperator("toppingName", mapStr.get("ToppingName"));
+		priceGreaterThen(Double.valueOf(mapStr.get("Price[greater than or equal]")));
+		priceLessThen(Double.valueOf(mapStr.get("Price[less than or equal]")));
+	}
 }

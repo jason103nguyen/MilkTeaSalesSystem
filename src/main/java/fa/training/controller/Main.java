@@ -29,7 +29,11 @@ public class Main {
 			System.out.println("************** Welcome to program \"MILK TEA SALES SYSTEM\" **************");
 			System.out.println("Please choose the option ");
 			System.out.println("1. Auto insert data");
-			System.out.println("2. Find customer by phone");
+			System.out.println("2. Find customer by FIELDs");
+			System.out.println("3. Find Store by FIELDs");
+			System.out.println("4. Find Order by FIELDs");
+			System.out.println("5. Find MilkTea by FIELDs");
+			System.out.println("6. Find Topping by FIELDs");
 			System.out.println("exit: To close program");
 			System.out.print("Your choose: ");
 			sellection = getString();
@@ -47,9 +51,26 @@ public class Main {
 				break;
 			
 			case "2":
-				customerService.findCustomer("MilkTeaSalesSystem.xlsx", "Find_Customer");
+				customerService.find("MilkTeaSalesSystem.xlsx", "Find_Customer");
+				break;
+				
+			case "3":
+				storeService.find("MilkTeaSalesSystem.xlsx", "Find_Store");
 				break;
 
+			case "4":
+				orderService.find("MilkTeaSalesSystem.xlsx", "Find_Order");
+				break;
+
+			case "5":
+				milkTeaService.find("MilkTeaSalesSystem.xlsx", "Find_MilkTea");
+				break;
+
+			case "6":
+				toppingService.find("MilkTeaSalesSystem.xlsx", "Find_Topping");
+				break;
+
+			
 			case "exit":
 				return;
 

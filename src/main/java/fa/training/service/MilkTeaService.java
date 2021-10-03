@@ -125,4 +125,86 @@ public void addFromExcel(String pathFile, String sheetName) throws Exception {
         return true;
     }
 
+    public void likeOperator(String field, String value) {
+    	
+    	List<MilkTea> milkTeaList = milkTeaDAO.likeOperator(field, value);
+    	List<MilkTeaDTO> milkTeaDtoList = new ArrayList<>();
+    	
+    	if (milkTeaList.isEmpty()) {
+    		System.out.println(String.format("The MilkTea with %s: %s doesn't exist!",field, value));
+    		return;
+    	}
+    	
+    	for (MilkTea milkTea : milkTeaList) {
+    		milkTeaDtoList.add(new MilkTeaDTO(milkTea));
+		}
+    	
+    	System.out.println(String.format("Info of MilkTeas with %s: %s is: ", field, value));
+		for (MilkTeaDTO milkTeaDto : milkTeaDtoList) {
+			System.out.println(milkTeaDto.toString());
+		}
+    }
+    
+    public void priceGreaterThen(double value) {
+    	
+    	List<MilkTea> milkTeaList = milkTeaDAO.greaterThanOperator("price", value);
+    	List<MilkTeaDTO> milkTeaDtoList = new ArrayList<>();
+    	
+    	if (milkTeaList.isEmpty()) {
+    		System.out.println(String.format("The MilkTea with %s: %s doesn't exist!", "Price greater than", String.valueOf(value)));
+    		return;
+    	}
+    	
+    	for (MilkTea milkTea : milkTeaList) {
+    		milkTeaDtoList.add(new MilkTeaDTO(milkTea));
+		}
+    	
+    	System.out.println(String.format("Info of MilkTea with %s: %s is: ", "Price greater than", String.valueOf(value)));
+		for (MilkTeaDTO milkTeaDto : milkTeaDtoList) {
+			System.out.println(milkTeaDto.toString());
+		}
+    }
+    
+    public void priceLessThen(double value) {
+    	
+    	List<MilkTea> milkTeaList = milkTeaDAO.lessThanOperator("price", value);
+    	List<MilkTeaDTO> milkTeaDtoList = new ArrayList<>();
+    	
+    	if (milkTeaList.isEmpty()) {
+    		System.out.println(String.format("The MilkTea with %s: %s doesn't exist!", "Price less than", String.valueOf(value)));
+    		return;
+    	}
+    	
+    	for (MilkTea milkTea : milkTeaList) {
+    		milkTeaDtoList.add(new MilkTeaDTO(milkTea));
+		}
+    	
+    	System.out.println(String.format("Info of MilkTea with %s: %s is: ", "Price less than", String.valueOf(value)));
+		for (MilkTeaDTO milkTeaDto : milkTeaDtoList) {
+			System.out.println(milkTeaDto.toString());
+		}
+    }
+
+	public void find(String pathFile, String sheetName) {
+		
+		Workbook workbook = ServiceUtil.convertXLSXtoWorkbook(pathFile);
+		Sheet sheet = workbook.getSheet(sheetName);
+		
+		Map<String, String> mapStr = new HashMap<String, String>();
+		
+		int index = 0;
+		for(Row row : sheet) {
+			if (index == 0) {
+				index++;
+				continue;
+			}
+			
+			mapStr.put(row.getCell(0).toString(), row.getCell(1).toString());
+		}
+		
+		likeOperator("name", mapStr.get("Name"));
+		priceGreaterThen(Double.valueOf(mapStr.get("Price[greater than or equal]")));
+		priceLessThen(Double.valueOf(mapStr.get("Price[less than or equal]")));
+	}
+
 }
