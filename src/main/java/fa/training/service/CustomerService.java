@@ -17,12 +17,12 @@ import fa.training.utils.ServiceUtil;
 public class CustomerService {
 
     private CustomerDAO customerDAO;
-
+    
     public CustomerService() {
-        this.customerDAO = new CustomerDAO();
+    	this.customerDAO = new CustomerDAO();
     }
     
-public void addFromExcel(String pathFile, String sheetName) throws Exception {
+    public void addFromExcel(String pathFile, String sheetName) throws Exception {
 		
 		List<CustomerDTO> listCustomerDTO = convertXLSX(pathFile, sheetName);
 		
@@ -129,5 +129,49 @@ public void addFromExcel(String pathFile, String sheetName) throws Exception {
         }
         return true;
     }
+    
+    public void findByField(String field, String value) {
+    	
+    	List<Customer> customerList = customerDAO.likeOperator(field, value);
+    	List<CustomerDTO> customerDtoList = new ArrayList<>();
+    	
+    	if (customerList.isEmpty()) {
+    		System.out.println(String.format("The customer with %s: %s doesn't exist!",field, value));
+    		return;
+    	}
+    	
+    	for (Customer customer : customerList) {
+    		customerDtoList.add(new CustomerDTO(customer));
+		}
+    	
+    	System.out.println(String.format("Info of customers with %s: %s is: ", field, value));
+		for (CustomerDTO customerDto : customerDtoList) {
+			System.out.println(customerDto.toString());
+		}
+    }
+
+	public void findCustomer(String pathFile, String sheetName) {
+		
+		Workbook workbook = ServiceUtil.convertXLSXtoWorkbook(pathFile);
+		Sheet sheet = workbook.getSheet(sheetName);
+		
+		Map<String, String> mapStr = new HashMap<String, String>();
+		
+		int index = 0;
+		for(Row row : sheet) {
+			if (index == 0) {
+				index++;
+				continue;
+			}
+			
+			mapStr.put(row.getCell(0).toString(), row.getCell(1).toString());
+		}
+		
+		findByField("phone", mapStr.get("Phone"));
+		findByField("email", mapStr.get("Email"));
+		findByField("firstName", mapStr.get("FirstName"));
+		findByField("lastName", mapStr.get("LastName"));
+		
+	}
 
 }

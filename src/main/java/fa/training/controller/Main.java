@@ -29,6 +29,7 @@ public class Main {
 			System.out.println("************** Welcome to program \"MILK TEA SALES SYSTEM\" **************");
 			System.out.println("Please choose the option ");
 			System.out.println("1. Auto insert data");
+			System.out.println("2. Find customer by phone");
 			System.out.println("exit: To close program");
 			System.out.print("Your choose: ");
 			sellection = getString();
@@ -43,6 +44,10 @@ public class Main {
 				orderService.addFromExcel("MilkTeaSalesSystem.xlsx", "Order");
 				orderToppingService.addFromExcel("MilkTeaSalesSystem.xlsx", "OrderTopping");
 				orderMilkTeaService.addFromExcel("MilkTeaSalesSystem.xlsx", "OrderMilkTea");
+				break;
+			
+			case "2":
+				customerService.findCustomer("MilkTeaSalesSystem.xlsx", "Find_Customer");
 				break;
 
 			case "exit":

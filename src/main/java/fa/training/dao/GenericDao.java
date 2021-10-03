@@ -139,4 +139,29 @@ public class GenericDao<T> {
         }
     }
     
+    public List<T> likeOperator(String fieldName, String value) {
+    	Session session = null;
+        List<T> entityList = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<T> query = criteriaBuilder.createQuery(entityClass);
+            Root<T> root = query.from(entityClass);
+
+            query.select(root);
+            query.where(criteriaBuilder.like(root.get(fieldName), "%" + value + "%"));
+
+            Query<T> q = session.createQuery(query);
+
+            entityList = q.getResultList();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return entityList;
+    }
 }
