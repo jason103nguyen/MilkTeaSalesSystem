@@ -40,7 +40,7 @@ public class OrderService {
     	orderToppingDAO.create(orderTopping);
     }
 
-public void addFromExcel(String pathFile, String sheetName) throws Exception {
+    public void addFromExcel(String pathFile, String sheetName) throws Exception {
 		
 		List<OrderDTO> listOrderDTO = convertXLSX(pathFile, sheetName);
 		
@@ -49,6 +49,17 @@ public void addFromExcel(String pathFile, String sheetName) throws Exception {
 		}
 		
 		System.out.println("Adding success");
+	}
+    
+    public void updateFromExcel(String pathFile, String sheetName) throws Exception {
+		
+		List<OrderDTO> listOrderDTO = convertXLSX(pathFile, sheetName);
+		
+		for (OrderDTO orderDTO : listOrderDTO) {
+			update(orderDTO);
+		}
+		
+		System.out.println("Update success");
 	}
 	
 	public List<OrderDTO> convertXLSX(String pathFile, String sheetName) {
@@ -66,7 +77,7 @@ public void addFromExcel(String pathFile, String sheetName) throws Exception {
 			}
 			
 			Map<String, String> mapRow = new HashMap<String, String>();
-			mapRow.put("OrderOrderId", row.getCell(0).toString());
+			mapRow.put("MilkTeaOrderId", row.getCell(0).toString());
 			mapRow.put("CreateDate", row.getCell(1).toString());
 			mapRow.put("Status", row.getCell(2).toString());
 			mapRow.put("TotalPrice", row.getCell(3).toString());
@@ -81,7 +92,7 @@ public void addFromExcel(String pathFile, String sheetName) throws Exception {
 		for(Map<String, String> objectStr : listStr) {
 			OrderDTO orderDTO = new OrderDTO();
 			
-			orderDTO.setId((int)Double.parseDouble(objectStr.get("OrderOrderId")));
+			orderDTO.setId((int)Double.parseDouble(objectStr.get("MilkTeaOrderId")));
 			orderDTO.setCreateDate(LocalDate.parse(objectStr.get("CreateDate"), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 			orderDTO.setStatus(Boolean.parseBoolean(objectStr.get("Status")));
 			orderDTO.setTotalPrice(Float.parseFloat(objectStr.get("TotalPrice")));

@@ -34,6 +34,17 @@ public class StoreService {
 		System.out.println("Adding success");
 	}
 	
+	public void updateFromExcel(String pathFile, String sheetName) throws Exception {
+		
+		List<StoreDTO> listStoreDTO = convertXLSX(pathFile, sheetName);
+		
+		for (StoreDTO storeDTO : listStoreDTO) {
+			update(storeDTO);
+		}
+		
+		System.out.println("Update success");
+	}
+	
 	public List<StoreDTO> convertXLSX(String pathFile, String sheetName) {
 		
 		Workbook workbook = ServiceUtil.convertXLSXtoWorkbook(pathFile);

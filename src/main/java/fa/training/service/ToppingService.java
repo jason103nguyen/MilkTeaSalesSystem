@@ -22,7 +22,6 @@ public class ToppingService {
         this.toppingDAO = new ToppingDAO();
     }
 
-    
 	public void addFromExcel(String pathFile, String sheetName) throws Exception {
 		
 		List<ToppingDTO> listToppingDTO = convertXLSX(pathFile, sheetName);
@@ -32,6 +31,17 @@ public class ToppingService {
 		}
 		
 		System.out.println("Adding success");
+	}
+	
+	public void updateFromExcel(String pathFile, String sheetName) throws Exception {
+		
+		List<ToppingDTO> listToppingDTO = convertXLSX(pathFile, sheetName);
+		
+		for (ToppingDTO toppingDTO : listToppingDTO) {
+			update(toppingDTO);
+		}
+		
+		System.out.println("Update success");
 	}
 	
 	public List<ToppingDTO> convertXLSX(String pathFile, String sheetName) {
