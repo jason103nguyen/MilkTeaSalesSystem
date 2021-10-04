@@ -22,6 +22,12 @@ public class CustomerService {
     	this.customerDAO = new CustomerDAO();
     }
     
+    /**
+     * Add customers from file excel
+     * @param pathFile path name of file excel
+     * @param sheetName sheet contain data customer
+     * @throws Exception throw if convert file excel doesn't success
+     */
     public void addFromExcel(String pathFile, String sheetName) throws Exception {
 		
 		List<CustomerDTO> listCustomerDTO = convertXLSX(pathFile, sheetName);
@@ -33,6 +39,12 @@ public class CustomerService {
 		System.out.println("Adding success");
 	}
     
+    /**
+     * Update info customer based on data from file excel
+     * @param pathFile path name of file excel
+     * @param sheetName sheet contain data customer
+     * @throws Exception throw if convert file excel doesn't success
+     */
     public void updateFromExcel(String pathFile, String sheetName) throws Exception {
 		
 		List<CustomerDTO> listCustomerDTO = convertXLSX(pathFile, sheetName);
@@ -44,6 +56,12 @@ public class CustomerService {
 		System.out.println("Update success");
 	}
 	
+    /**
+     * Convert data from file excel to list of customer
+     * @param pathFile path name of file excel
+     * @param sheetName sheet contain data customer
+     * @return list of customer
+     */
 	public List<CustomerDTO> convertXLSX(String pathFile, String sheetName) {
 		
 		Workbook workbook = ServiceUtil.convertXLSXtoWorkbook(pathFile);
@@ -84,7 +102,11 @@ public class CustomerService {
 		return listObject;
 	}
 
-    
+    /**
+     * Insert a customer to database
+     * @param customerDTO the customer will be inserted
+     * @return true if insertion is success otherwise false
+     */
     public boolean create(CustomerDTO customerDTO) {
         try {
             Customer customer = new Customer(customerDTO);
@@ -98,6 +120,11 @@ public class CustomerService {
         return true;
     }
 
+    /**
+     * Get a customer from database
+     * @param id of customer that will be get
+     * @return a customer
+     */
     public CustomerDTO readOne(int id) {
         CustomerDTO customerDTO = null;
         try {
@@ -111,6 +138,10 @@ public class CustomerService {
         return customerDTO;
     }
 
+    /**
+     * Get all customer from database
+     * @return list of customer
+     */
     public List<CustomerDTO> readAll() {
         List<Customer> customerList = customerDAO.readAll();
         List<CustomerDTO> customerDTOList = new ArrayList<>();
@@ -125,6 +156,11 @@ public class CustomerService {
         return customerDTOList;
     }
 
+    /**
+     * Update info of a customer
+     * @param customerDTO that will be updated
+     * @return true if update is success otherwise false
+     */
     public boolean update(CustomerDTO customerDTO) {
         try {
             Customer customer = new Customer(customerDTO);
@@ -136,6 +172,11 @@ public class CustomerService {
         return true;
     }
 
+    /**
+     * Delete a customer
+     * @param id of customer that will be delete
+     * @return true if delete is success otherwise false
+     */
     public boolean delete(int id) {
         try {
             customerDAO.delete(id);
@@ -146,6 +187,11 @@ public class CustomerService {
         return true;
     }
     
+    /**
+     * Get data base on input condition 
+     * @param fieldName of object 
+     * @param value that will be compared
+     */
     public void likeOperator(String field, String value) {
     	
     	List<Customer> customerList = customerDAO.likeOperator(field, value);
@@ -166,6 +212,11 @@ public class CustomerService {
 		}
     }
 
+    /**
+     * Find a customer base on input condition
+     * @param fieldName of entity 
+     * @param value that will be compared
+     */
 	public void find(String pathFile, String sheetName) {
 		
 		Workbook workbook = ServiceUtil.convertXLSXtoWorkbook(pathFile);
