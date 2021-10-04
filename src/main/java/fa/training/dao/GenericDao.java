@@ -21,6 +21,11 @@ public class GenericDao<T> {
         this.entityClass = entityClass;
     }
 
+    /**
+     * Insert a entity to database
+     * @param entity that will be insert into database
+     * @return id of entity that success insert to database
+     */
     public Serializable create(T entity) {
         Session session = null;
         Transaction transaction = null;
@@ -43,6 +48,11 @@ public class GenericDao<T> {
         return id;
     }
 
+    /**
+     * Get a row from database
+     * @param id of row that will be get
+     * @return entity
+     */
     public T readOne(Serializable id) {
         Session session = null;
         Transaction transaction = null;
@@ -65,6 +75,10 @@ public class GenericDao<T> {
         return readEntity;
     }
 
+    /**
+     * Read all row of table
+     * @return list of entity
+     */
     public List<T> readAll() {
         Session session = null;
         Transaction transaction = null;
@@ -97,6 +111,10 @@ public class GenericDao<T> {
         return entityList;
     }
 
+    /**
+     * Update a entity to database
+     * @param entity that will be updated
+     */
     public void update (T entity) {
         Session session = null;
         Transaction transaction = null;
@@ -117,6 +135,10 @@ public class GenericDao<T> {
         }
     }
 
+    /**
+     * Delete a row at database
+     * @param id of row that will be deleted
+     */
     public void delete (Serializable id) {
         Session session = null;
         Transaction transaction = null;
@@ -139,6 +161,12 @@ public class GenericDao<T> {
         }
     }
     
+    /**
+     * Get rows of database based on condition input contain a string or substring
+     * @param fieldName of entity 
+     * @param value that will be compared
+     * @return list of entity
+     */
     public List<T> likeOperator(String fieldName, String value) {
     	Session session = null;
         List<T> entityList = null;
@@ -165,6 +193,13 @@ public class GenericDao<T> {
         return entityList;
     }
 
+    /**
+     * Get rows of database based on condition input is equal
+     * @param <V> type of value that will be compared
+     * @param field of entity
+     * @param v value that will be compared
+     * @return list of entity
+     */
     public <V> List<T> equalOperator(String field, V v) {
 		Session session = null;
         List<T> orderList = null;
@@ -191,6 +226,13 @@ public class GenericDao<T> {
         return orderList;
 	}
     
+    /**
+     * Get rows of database based on condition input is greater than or equal
+     * @param <Y> type of value that will be compared
+     * @param field of entity
+     * @param value that will be compared
+     * @return list of entity
+     */
     public <Y extends Comparable<? super Y>> List<T> greaterThanOperator(String field, Y value) {
 		Session session = null;
         List<T> orderList = null;
@@ -217,6 +259,13 @@ public class GenericDao<T> {
         return orderList;
 	}
     
+    /**
+     * Get rows of database based on condition input is less than or equal
+     * @param <Y> type of value that will be compared
+     * @param field of entity
+     * @param value that will be compared
+     * @return list of entity
+     */
     public <Y extends Comparable<? super Y>> List<T> lessThanOperator(String field, Y value) {
 		Session session = null;
         List<T> orderList = null;
