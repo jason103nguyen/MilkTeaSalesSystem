@@ -106,6 +106,11 @@ public class CustomerService {
         for (Customer customer : customerList) {
             customerDTOList.add(new CustomerDTO(customer));
         }
+        
+        for (CustomerDTO customerDto : customerDTOList) {
+        	System.out.println(customerDto.toString());
+        }
+        
         return customerDTOList;
     }
 

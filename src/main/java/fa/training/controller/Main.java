@@ -34,6 +34,7 @@ public class Main {
 			System.out.println("4. Find Order by FIELDs");
 			System.out.println("5. Find MilkTea by FIELDs");
 			System.out.println("6. Find Topping by FIELDs");
+			System.out.println("7. Read all customers");
 			System.out.println("exit: To close program");
 			System.out.print("Your choose: ");
 			sellection = getString();
@@ -70,7 +71,10 @@ public class Main {
 				toppingService.find("MilkTeaSalesSystem.xlsx", "Find_Topping");
 				break;
 
-			
+			case "7":
+				customerService.readAll();
+				break;
+
 			case "exit":
 				return;
 
