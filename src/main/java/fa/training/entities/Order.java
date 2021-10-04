@@ -16,6 +16,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import fa.training.dto.OrderDTO;
 
 @Entity
@@ -43,10 +46,12 @@ public class Order {
 	private Set<OrderMilkTea> setOrderMilkTea = new HashSet<OrderMilkTea>();
 	
 	@ManyToOne(cascade = CascadeType.ALL)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "store_id")
 	private Store store;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	

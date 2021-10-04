@@ -17,6 +17,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import fa.training.dto.OrderMilkTeaDTO;
 
 @Entity
@@ -29,10 +32,12 @@ public class OrderMilkTea {
 	private int id;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "order_id")
 	private Order order;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "milk_tea_id")
 	private MilkTea milkTea;
 	
