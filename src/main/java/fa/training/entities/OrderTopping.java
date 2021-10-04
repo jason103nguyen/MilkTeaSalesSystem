@@ -2,6 +2,7 @@
 package fa.training.entities;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,18 +23,17 @@ public class OrderTopping {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "order_id")
 	private Order order;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "topping_id")
 	private Topping topping;
 	
 	private int quantity;
 	
-	public OrderTopping() {
-	}
+	public OrderTopping() {}
 
 	public OrderTopping(Order order, Topping topping, int quantity) {
 		super();

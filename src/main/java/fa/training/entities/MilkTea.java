@@ -29,11 +29,10 @@ public class MilkTea {
 	@Column(name = "price")
 	private double price;
 	
-	@OneToMany(mappedBy = "milkTea",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "milkTea", cascade = CascadeType.ALL)
 	private Set<OrderMilkTea> setMilkTeaOrder = new HashSet<OrderMilkTea>();
 
-	public MilkTea() {
-	}
+	public MilkTea() {}
 
 	public MilkTea(String name, double price) {
 		super();
@@ -75,6 +74,5 @@ public class MilkTea {
 	public String toString() {
 		return "MilkTea [id=" + id + ", name=" + name + ", price=" + price + "]";
 	}
-
 
 }

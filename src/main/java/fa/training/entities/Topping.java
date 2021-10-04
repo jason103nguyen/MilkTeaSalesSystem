@@ -29,11 +29,10 @@ public class Topping {
 	@Column(name = "price")
 	private double price;
 
-	@OneToMany(mappedBy = "topping",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "topping", cascade = CascadeType.ALL)
 	private Set<OrderTopping> setToppingOrder = new HashSet<OrderTopping>();
 	
-	public Topping() {
-	}
+	public Topping() {}
 
 	public Topping(String toppingName, double price) {
 		super();

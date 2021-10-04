@@ -33,11 +33,10 @@ public class Store {
 	@Column(name = "is_available")
 	private boolean isAvailable;
 	
-	@OneToMany(mappedBy = "store",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
 	private Set<Order> orders = new HashSet<Order>();
 	
-	public Store() {
-	}
+	public Store() {}
 
 	public Store(String storeName, String address, boolean isAvailable) {
 		super();

@@ -7,6 +7,7 @@
  */
 package fa.training.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,18 +28,17 @@ public class OrderMilkTea {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "order_id")
 	private Order order;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "milk_tea_id")
 	private MilkTea milkTea;
 	
 	private int quantity;
 	
-	public OrderMilkTea() {
-	}
+	public OrderMilkTea() {}
 
 	public OrderMilkTea(Order order, MilkTea milkTea, int quantity) {
 		super();

@@ -37,11 +37,10 @@ public class Customer {
 	@Column(name = "phone", unique = true)
 	private String phone;
 
-	@OneToMany(mappedBy = "customer" , cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "customer" , cascade = CascadeType.ALL)
 	private Set<Order> orders = new HashSet<Order>();
 	
-	public Customer() {
-	}
+	public Customer() {}
 
 	public Customer(String lastName, String firstName, String email, String phone) {
 		super();

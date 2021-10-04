@@ -36,22 +36,21 @@ public class Order {
 	@Column(name = "total_price")
 	private double totalPrice;
 
-	@OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	private Set<OrderTopping> setOrderTopping = new HashSet<OrderTopping>();
 	
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	private Set<OrderMilkTea> setOrderMilkTea = new HashSet<OrderMilkTea>();
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "store_id")
 	private Store store;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	
-	public Order() {
-	}
+	public Order() {}
 
 	public Order(LocalDate createDate, boolean status, double totalPrice) {
 		super();
