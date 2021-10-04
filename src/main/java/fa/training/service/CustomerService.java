@@ -32,6 +32,17 @@ public class CustomerService {
 		
 		System.out.println("Adding success");
 	}
+    
+    public void updateFromExcel(String pathFile, String sheetName) throws Exception {
+		
+		List<CustomerDTO> listCustomerDTO = convertXLSX(pathFile, sheetName);
+		
+		for (CustomerDTO customerDTO : listCustomerDTO) {
+			update(customerDTO);
+		}
+		
+		System.out.println("Update success");
+	}
 	
 	public List<CustomerDTO> convertXLSX(String pathFile, String sheetName) {
 		

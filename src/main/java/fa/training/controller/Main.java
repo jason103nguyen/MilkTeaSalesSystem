@@ -39,6 +39,11 @@ public class Main {
 			System.out.println("9. Read all orders");
 			System.out.println("10. Read all toppings");
 			System.out.println("11. Read all milkteas");
+			System.out.println("12. Update a customer");
+			System.out.println("13. Update a store");
+			System.out.println("14. Update a order");
+			System.out.println("15. Update a topping");
+			System.out.println("16. Update a milkTea");
 			System.out.println("exit: To close program");
 			System.out.print("Your choose: ");
 			sellection = getString();
@@ -94,6 +99,23 @@ public class Main {
 			case "11":
 				milkTeaService.readAll();
 				break;
+				
+			case "12":
+				customerService.updateFromExcel("MilkTeaSalesSystem.xlsx", "Update_Customer");
+				break;
+			case "13":
+				storeService.updateFromExcel("MilkTeaSalesSystem.xlsx", "Update_Store");
+				break;
+			case "14":
+				orderService.updateFromExcel("MilkTeaSalesSystem.xlsx", "Update_Order");
+				break;
+			case "15":
+				toppingService.updateFromExcel("MilkTeaSalesSystem.xlsx", "Update_Topping");
+				break;
+			case "16":
+				milkTeaService.updateFromExcel("MilkTeaSalesSystem.xlsx", "Update_MilkTea");
+				break;
+			
 				
 			case "exit":
 				return;

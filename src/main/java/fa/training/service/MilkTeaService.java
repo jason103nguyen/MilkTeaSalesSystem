@@ -32,6 +32,17 @@ public class MilkTeaService {
 		
 		System.out.println("Adding success");
 	}
+    
+    public void updateFromExcel(String pathFile, String sheetName) throws Exception {
+		
+		List<MilkTeaDTO> listMilkTeaDTO = convertXLSX(pathFile, sheetName);
+		
+		for (MilkTeaDTO milkTeaDTO : listMilkTeaDTO) {
+			update(milkTeaDTO);
+		}
+		
+		System.out.println("Update success");
+	}
 	
 	public List<MilkTeaDTO> convertXLSX(String pathFile, String sheetName) {
 		
