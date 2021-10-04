@@ -104,6 +104,11 @@ public class ToppingService {
         for (Topping topping : toppingList) {
             toppingDTOList.add(new ToppingDTO(topping));
         }
+        
+        for (ToppingDTO toppingDTO : toppingDTOList) {
+			System.out.println(toppingDTO.toString());
+		}
+        
         return toppingDTOList;
     }
 

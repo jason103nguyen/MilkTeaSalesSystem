@@ -105,6 +105,11 @@ public class StoreService {
         for (Store store : storeList) {
             storeDTOList.add(new StoreDTO(store));
         }
+        
+        for (StoreDTO storeDTO : storeDTOList) {
+			System.out.println(storeDTO.toString());
+		}
+        
         return storeDTOList;
     }
 

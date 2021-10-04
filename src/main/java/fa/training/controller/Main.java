@@ -35,6 +35,10 @@ public class Main {
 			System.out.println("5. Find MilkTea by FIELDs");
 			System.out.println("6. Find Topping by FIELDs");
 			System.out.println("7. Read all customers");
+			System.out.println("8. Read all stores");
+			System.out.println("9. Read all orders");
+			System.out.println("10. Read all toppings");
+			System.out.println("11. Read all milkteas");
 			System.out.println("exit: To close program");
 			System.out.print("Your choose: ");
 			sellection = getString();
@@ -74,7 +78,23 @@ public class Main {
 			case "7":
 				customerService.readAll();
 				break;
+				
+			case "8":
+				storeService.readAll();
+				break;
 
+			case "9":
+				orderService.readAll();
+				break;
+
+			case "10":
+				toppingService.readAll();
+				break;
+
+			case "11":
+				milkTeaService.readAll();
+				break;
+				
 			case "exit":
 				return;
 

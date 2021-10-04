@@ -101,6 +101,11 @@ public class MilkTeaService {
         for (MilkTea MilkTea : MilkTeaList) {
             MilkTeaDTOList.add(new MilkTeaDTO(MilkTea));
         }
+        
+        for (MilkTeaDTO milkTeaDto : MilkTeaDTOList) {
+        	System.out.println(milkTeaDto.toString());
+        }
+        
         return MilkTeaDTOList;
     }
 

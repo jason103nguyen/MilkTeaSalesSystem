@@ -134,6 +134,11 @@ public void addFromExcel(String pathFile, String sheetName) throws Exception {
         for (Order order : orderList) {
             orderDTOList.add(new OrderDTO(order));
         }
+        
+        for (OrderDTO orderDTO : orderDTOList) {
+			System.out.println(orderDTO.toString());
+		}
+        
         return orderDTOList;
     }
 
