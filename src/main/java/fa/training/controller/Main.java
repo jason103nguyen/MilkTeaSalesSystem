@@ -29,16 +29,16 @@ public class Main {
 			System.out.println("************** Welcome to program \"MILK TEA SALES SYSTEM\" **************");
 			System.out.println("Please choose the option ");
 			System.out.println("1. Auto insert data");
-			System.out.println("2. Find customer by FIELDs");
-			System.out.println("3. Find Store by FIELDs");
-			System.out.println("4. Find Order by FIELDs");
-			System.out.println("5. Find MilkTea by FIELDs");
-			System.out.println("6. Find Topping by FIELDs");
-			System.out.println("7. Read all customers");
-			System.out.println("8. Read all stores");
-			System.out.println("9. Read all orders");
-			System.out.println("10. Read all toppings");
-			System.out.println("11. Read all milkteas");
+			System.out.println("2. Read all customers");
+			System.out.println("3. Read all stores");
+			System.out.println("4. Read all orders");
+			System.out.println("5. Read all toppings");
+			System.out.println("6. Read all milkteas");
+			System.out.println("7. Find customer by FIELDs");
+			System.out.println("8. Find Store by FIELDs");
+			System.out.println("9. Find Order by FIELDs");
+			System.out.println("10. Find MilkTea by FIELDs");
+			System.out.println("11. Find Topping by FIELDs");
 			System.out.println("12. Update a customer");
 			System.out.println("13. Update a store");
 			System.out.println("14. Update a order");
@@ -61,62 +61,65 @@ public class Main {
 				break;
 			
 			case "2":
-				customerService.find("MilkTeaSalesSystem.xlsx", "Find_Customer");
-				break;
-				
-			case "3":
-				storeService.find("MilkTeaSalesSystem.xlsx", "Find_Store");
-				break;
-
-			case "4":
-				orderService.find("MilkTeaSalesSystem.xlsx", "Find_Order");
-				break;
-
-			case "5":
-				milkTeaService.find("MilkTeaSalesSystem.xlsx", "Find_MilkTea");
-				break;
-
-			case "6":
-				toppingService.find("MilkTeaSalesSystem.xlsx", "Find_Topping");
-				break;
-
-			case "7":
 				customerService.readAll();
 				break;
 				
-			case "8":
+			case "3":
 				storeService.readAll();
 				break;
 
-			case "9":
+			case "4":
 				orderService.readAll();
 				break;
 
-			case "10":
+			case "5":
 				toppingService.readAll();
 				break;
 
-			case "11":
+			case "6":
 				milkTeaService.readAll();
+				break;
+			
+			case "7":
+				customerService.find("MilkTeaSalesSystem.xlsx", "Find_Customer");
+				break;
+				
+			case "8":
+				storeService.find("MilkTeaSalesSystem.xlsx", "Find_Store");
+				break;
+
+			case "9":
+				orderService.find("MilkTeaSalesSystem.xlsx", "Find_Order");
+				break;
+
+			case "10":
+				milkTeaService.find("MilkTeaSalesSystem.xlsx", "Find_MilkTea");
+				break;
+
+			case "11":
+				toppingService.find("MilkTeaSalesSystem.xlsx", "Find_Topping");
 				break;
 				
 			case "12":
 				customerService.updateFromExcel("MilkTeaSalesSystem.xlsx", "Update_Customer");
 				break;
+				
 			case "13":
 				storeService.updateFromExcel("MilkTeaSalesSystem.xlsx", "Update_Store");
 				break;
+				
 			case "14":
 				orderService.updateFromExcel("MilkTeaSalesSystem.xlsx", "Update_Order");
 				break;
+				
 			case "15":
 				toppingService.updateFromExcel("MilkTeaSalesSystem.xlsx", "Update_Topping");
 				break;
+				
 			case "16":
 				milkTeaService.updateFromExcel("MilkTeaSalesSystem.xlsx", "Update_MilkTea");
 				break;
 			
-				
 			case "exit":
 				return;
 
