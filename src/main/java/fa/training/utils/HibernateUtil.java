@@ -3,6 +3,10 @@ package fa.training.utils;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+/**
+ * Built the SessionFactory to create Session  
+ * Method refreshNewSessionFactory use to refresh thread and rebuilt SessionFactory
+ */
 public class HibernateUtil {
 
     private static SessionFactory sessionFactory;
