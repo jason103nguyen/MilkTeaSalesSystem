@@ -22,6 +22,12 @@ public class ToppingService {
         this.toppingDAO = new ToppingDAO();
     }
 
+    /**
+     * Add data from file excel
+     * @param pathFile path name of file excel
+     * @param sheetName sheet contain data
+     * @throws Exception throw if convert file excel doesn't success
+     */
 	public void addFromExcel(String pathFile, String sheetName) throws Exception {
 		
 		List<ToppingDTO> listToppingDTO = convertXLSX(pathFile, sheetName);
@@ -33,6 +39,12 @@ public class ToppingService {
 		System.out.println("Adding success");
 	}
 	
+	/**
+     * Update info based on data from file excel
+     * @param pathFile path name of file excel
+     * @param sheetName sheet contain data
+     * @throws Exception throw if convert file excel doesn't success
+     */
 	public void updateFromExcel(String pathFile, String sheetName) throws Exception {
 		
 		List<ToppingDTO> listToppingDTO = convertXLSX(pathFile, sheetName);
@@ -44,6 +56,12 @@ public class ToppingService {
 		System.out.println("Update success");
 	}
 	
+	/**
+     * Convert data from file excel
+     * @param pathFile path name of file excel
+     * @param sheetName sheet contain data
+     * @return list of instance
+     */
 	public List<ToppingDTO> convertXLSX(String pathFile, String sheetName) {
 		
 		Workbook workbook = ServiceUtil.convertXLSXtoWorkbook(pathFile);
@@ -81,7 +99,11 @@ public class ToppingService {
 		return listObject;
 	}
 	
-    
+	/**
+     * Insert a instance to database
+     * @param milkTeaDTO the instance will be inserted
+     * @return true if insertion is success otherwise false
+     */
     public boolean create(ToppingDTO toppingDTO) {
         try {
             Topping topping = new Topping(toppingDTO);
@@ -95,6 +117,11 @@ public class ToppingService {
         return true;
     }
 
+    /**
+     * Get a instance from database
+     * @param id of instance that will be get
+     * @return a instance
+     */
     public ToppingDTO readOne(int id) {
         ToppingDTO toppingDTO = null;
         try {
@@ -108,6 +135,10 @@ public class ToppingService {
         return toppingDTO;
     }
 
+    /**
+     * Get all row from table
+     * @return list of instance
+     */
     public List<ToppingDTO> readAll() {
         List<Topping> toppingList = toppingDAO.readAll();
         List<ToppingDTO> toppingDTOList = new ArrayList<>();
@@ -122,6 +153,11 @@ public class ToppingService {
         return toppingDTOList;
     }
 
+    /**
+     * Update info
+     * @param milkTeaDTO that will be updated
+     * @return true if update is success otherwise false
+     */
     public boolean update(ToppingDTO toppingDTO) {
         try {
             Topping topping = new Topping(toppingDTO);
@@ -133,6 +169,11 @@ public class ToppingService {
         return true;
     }
 
+    /**
+     * Delete data
+     * @param id of instance that will be delete
+     * @return true if delete is success otherwise false
+     */
     public boolean delete(int id) {
         try {
             toppingDAO.delete(id);
@@ -143,6 +184,11 @@ public class ToppingService {
         return true;
     }
 
+    /**
+     * Get data base on input condition 
+     * @param fieldName of object 
+     * @param value that will be compared
+     */
 	public void likeOperator(String field, String value) {
     	
     	List<Topping> toppingList = toppingDAO.likeOperator(field, value);
@@ -163,6 +209,10 @@ public class ToppingService {
 		}
     }
 
+	/**
+     * Get rows of database based on condition input is greater than or equal
+     * @param value that will be compared
+     */
     public void priceGreaterThen(double value) {
     	
     	List<Topping> toppingList = toppingDAO.greaterThanOperator("price", value);
@@ -183,6 +233,10 @@ public class ToppingService {
 		}
     }
     
+    /**
+     * Get rows of database based on condition input is less than or equal
+     * @param value hat will be compared
+     */
     public void priceLessThen(double value) {
     	
     	List<Topping> toppingList = toppingDAO.lessThanOperator("price", value);
@@ -203,6 +257,11 @@ public class ToppingService {
 		}
     }
 
+    /**
+     * Find a instance base on input condition
+     * @param fieldName of entity 
+     * @param value that will be compared
+     */
 	public void find(String pathFile, String sheetName) {
 		
 		Workbook workbook = ServiceUtil.convertXLSXtoWorkbook(pathFile);

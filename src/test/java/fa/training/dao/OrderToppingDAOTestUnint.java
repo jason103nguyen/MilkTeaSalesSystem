@@ -1,10 +1,3 @@
-/*
- * (C) Copyright 2021 Fresher Academy. All Right Reserved .
- *
- * @author pc Pham Tran Gia Huy
- * @date Oct 1, 2021
- * @version 1.0
- */
 package fa.training.dao;
 
 import java.time.LocalDate;

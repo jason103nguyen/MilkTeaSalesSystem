@@ -12,34 +12,26 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import fa.training.dao.OrderDAO;
-import fa.training.dao.OrderToppingDAO;
 import fa.training.dto.CustomerDTO;
 import fa.training.dto.OrderDTO;
 import fa.training.dto.StoreDTO;
-import fa.training.dto.ToppingDTO;
 import fa.training.entities.Order;
-import fa.training.entities.OrderTopping;
-import fa.training.entities.Topping;
 import fa.training.utils.ServiceUtil;
 
 public class OrderService {
 
     private OrderDAO orderDAO;
-    private OrderToppingDAO orderToppingDAO;
-
     
     public OrderService() {
         this.orderDAO = new OrderDAO();
-        this.orderToppingDAO = new OrderToppingDAO();
-    }
-    
-    public void addTopping(OrderDTO orderDTO, ToppingDTO toppingDTO, int quantity) {
-    	Order order = new Order(orderDTO);
-    	Topping topping = new Topping(toppingDTO);
-    	OrderTopping orderTopping = new OrderTopping(order, topping, quantity);
-    	orderToppingDAO.create(orderTopping);
     }
 
+    /**
+     * Add data from file excel
+     * @param pathFile path name of file excel
+     * @param sheetName sheet contain data
+     * @throws Exception throw if convert file excel doesn't success
+     */
     public void addFromExcel(String pathFile, String sheetName) throws Exception {
 		
 		List<OrderDTO> listOrderDTO = convertXLSX(pathFile, sheetName);
@@ -51,6 +43,12 @@ public class OrderService {
 		System.out.println("Adding success");
 	}
     
+    /**
+     * update data from file excel
+     * @param pathFile path name of file excel
+     * @param sheetName sheet contain data
+     * @throws Exception throw if convert file excel doesn't success
+     */
     public void updateFromExcel(String pathFile, String sheetName) throws Exception {
 		
 		List<OrderDTO> listOrderDTO = convertXLSX(pathFile, sheetName);
@@ -62,6 +60,12 @@ public class OrderService {
 		System.out.println("Update success");
 	}
 	
+    /**
+     * Convert data from file excel
+     * @param pathFile path name of file excel
+     * @param sheetName sheet contain data
+     * @return list of instance
+     */
 	public List<OrderDTO> convertXLSX(String pathFile, String sheetName) {
 		
 		Workbook workbook = ServiceUtil.convertXLSXtoWorkbook(pathFile);
@@ -111,8 +115,11 @@ public class OrderService {
 		return listObject;
 	}
 	
-    
-    
+	/**
+     * Insert a instance to database
+     * @param milkTeaDTO the instance will be inserted
+     * @return true if insertion is success otherwise false
+     */
     public boolean create(OrderDTO orderDTO) {
         try {
             Order order = new Order(orderDTO);
@@ -126,6 +133,11 @@ public class OrderService {
         return true;
     }
 
+    /**
+     * Get a instance from database
+     * @param id of instance that will be get
+     * @return a instance
+     */
     public OrderDTO readOne(int id) {
         OrderDTO orderDTO = null;
         try {
@@ -139,6 +151,10 @@ public class OrderService {
         return orderDTO;
     }
 
+    /**
+     * Get all row from table
+     * @return list of instance
+     */
     public List<OrderDTO> readAll() {
         List<Order> orderList = orderDAO.readAll();
         List<OrderDTO> orderDTOList = new ArrayList<>();
@@ -153,6 +169,11 @@ public class OrderService {
         return orderDTOList;
     }
 
+    /**
+     * Update info
+     * @param milkTeaDTO that will be updated
+     * @return true if update is success otherwise false
+     */
     public boolean update(OrderDTO orderDTO) {
         try {
             Order order = new Order(orderDTO);
@@ -164,6 +185,11 @@ public class OrderService {
         return true;
     }
 
+    /**
+     * Delete data
+     * @param id of instance that will be delete
+     * @return true if delete is success otherwise false
+     */
     public boolean delete(int id) {
         try {
             orderDAO.delete(id);
@@ -174,6 +200,11 @@ public class OrderService {
         return true;
     }
     
+    /**
+     * Get data base on input condition 
+     * @param fieldName of object 
+     * @param value that will be compared
+     */
     public <V> void equalOperator(String field, V value) {
     	
     	List<Order> orderList = orderDAO.equalOperator(field, value);
@@ -194,6 +225,10 @@ public class OrderService {
 		}
     }
     
+    /**
+     * Get rows of database based on condition input is greater than or equal
+     * @param value that will be compared
+     */
     public void totalPriceGreaterThen(double value) {
     	
     	List<Order> orderList = orderDAO.greaterThanOperator("totalPrice", value);
@@ -214,6 +249,10 @@ public class OrderService {
 		}
     }
     
+    /**
+     * Get rows of database based on condition input is less than or equal
+     * @param value hat will be compared
+     */
     public void totalPriceLessThen(double value) {
     	
     	List<Order> orderList = orderDAO.lessThanOperator("totalPrice", value);
@@ -234,6 +273,11 @@ public class OrderService {
 		}
     }
 
+    /**
+     * Find a instance base on input condition
+     * @param fieldName of entity 
+     * @param value that will be compared
+     */
 	public void find(String pathFile, String sheetName) {
 		
 		Workbook workbook = ServiceUtil.convertXLSXtoWorkbook(pathFile);

@@ -21,7 +21,13 @@ public class OrderMilkTeaService {
 
 	private OrderMilkTeaDAO orderMilkTeaDAO = new OrderMilkTeaDAO();
 	
-public void addFromExcel(String pathFile, String sheetName) throws Exception {
+	/**
+     * Add data from file excel
+     * @param pathFile path name of file excel
+     * @param sheetName sheet contain data
+     * @throws Exception throw if convert file excel doesn't success
+     */
+	public void addFromExcel(String pathFile, String sheetName) throws Exception {
 		
 		List<OrderMilkTeaDTO> listOrderMilkTeaDTO = convertXLSX(pathFile, sheetName);
 		
@@ -32,6 +38,12 @@ public void addFromExcel(String pathFile, String sheetName) throws Exception {
 		System.out.println("Adding success");
 	}
 	
+	/**
+     * Convert data from file excel
+     * @param pathFile path name of file excel
+     * @param sheetName sheet contain data
+     * @return list of instance
+     */
 	public List<OrderMilkTeaDTO> convertXLSX(String pathFile, String sheetName) {
 		
 		Workbook workbook = ServiceUtil.convertXLSXtoWorkbook(pathFile);
@@ -77,14 +89,22 @@ public void addFromExcel(String pathFile, String sheetName) throws Exception {
 		return listObject;
 	}
 	
-
-	
+	/**
+     * Insert a instance to database
+     * @param milkTeaDTO the instance will be inserted
+     * @return true if insertion is success otherwise false
+     */
 	public Serializable create(OrderMilkTeaDTO orderMilkTeaDTO) {
 		
 		OrderMilkTea orderMilkTea = new OrderMilkTea(orderMilkTeaDTO);
 		return orderMilkTeaDAO.create(orderMilkTea);
 	}
 	
+	/**
+     * Get a instance from database
+     * @param id of instance that will be get
+     * @return a instance
+     */
 	public OrderMilkTeaDTO readOne(Serializable id) {
 		
 		OrderMilkTea orderMilkTea = orderMilkTeaDAO.readOne(id);
@@ -92,6 +112,10 @@ public void addFromExcel(String pathFile, String sheetName) throws Exception {
 		return orderMilkTeaDTO;
 	}
 	
+	/**
+     * Get all row from table
+     * @return list of instance
+     */
 	public List<OrderMilkTeaDTO> readAll() {
 		
 		List<OrderMilkTea> listOrderMilkTea = orderMilkTeaDAO.readAll();
@@ -103,12 +127,22 @@ public void addFromExcel(String pathFile, String sheetName) throws Exception {
 		return listOrderMilkTeaDTO;
 	}
 	
+	/**
+     * Update info
+     * @param milkTeaDTO that will be updated
+     * @return true if update is success otherwise false
+     */
 	public void update(OrderMilkTeaDTO orderMilkTeaDTO) {
 		
 		OrderMilkTea orderMilkTea = new OrderMilkTea(orderMilkTeaDTO);
 		orderMilkTeaDAO.update(orderMilkTea);
 	}
 	
+	/**
+     * Delete data
+     * @param id of instance that will be delete
+     * @return true if delete is success otherwise false
+     */
 	public void delete(Serializable id) {
 		
 		orderMilkTeaDAO.delete(id);

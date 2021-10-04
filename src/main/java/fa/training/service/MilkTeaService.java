@@ -22,6 +22,12 @@ public class MilkTeaService {
         this.milkTeaDAO = new MilkTeaDAO();
     }
 
+    /**
+     * Add data from file excel
+     * @param pathFile path name of file excel
+     * @param sheetName sheet contain data
+     * @throws Exception throw if convert file excel doesn't success
+     */
     public void addFromExcel(String pathFile, String sheetName) throws Exception {
 		
 		List<MilkTeaDTO> listMilkTeaDTO = convertXLSX(pathFile, sheetName);
@@ -33,6 +39,12 @@ public class MilkTeaService {
 		System.out.println("Adding success");
 	}
     
+    /**
+     * Update info based on data from file excel
+     * @param pathFile path name of file excel
+     * @param sheetName sheet contain data
+     * @throws Exception throw if convert file excel doesn't success
+     */
     public void updateFromExcel(String pathFile, String sheetName) throws Exception {
 		
 		List<MilkTeaDTO> listMilkTeaDTO = convertXLSX(pathFile, sheetName);
@@ -44,6 +56,12 @@ public class MilkTeaService {
 		System.out.println("Update success");
 	}
 	
+    /**
+     * Convert data from file excel
+     * @param pathFile path name of file excel
+     * @param sheetName sheet contain data
+     * @return list of instance
+     */
 	public List<MilkTeaDTO> convertXLSX(String pathFile, String sheetName) {
 		
 		Workbook workbook = ServiceUtil.convertXLSXtoWorkbook(pathFile);
@@ -80,6 +98,11 @@ public class MilkTeaService {
 		return listObject;
 	}
     
+	/**
+     * Insert a instance to database
+     * @param milkTeaDTO the instance will be inserted
+     * @return true if insertion is success otherwise false
+     */
     public boolean create(MilkTeaDTO milkTeaDTO) {
         try {
             MilkTea milkTea = new MilkTea(milkTeaDTO);
@@ -93,6 +116,11 @@ public class MilkTeaService {
         return true;
     }
 
+    /**
+     * Get a instance from database
+     * @param id of instance that will be get
+     * @return a instance
+     */
     public MilkTeaDTO readOne(int id) {
         MilkTeaDTO milkTeaDTO = null;
         try {
@@ -106,6 +134,10 @@ public class MilkTeaService {
         return milkTeaDTO;
     }
 
+    /**
+     * Get all row from table
+     * @return list of instance
+     */
     public List<MilkTeaDTO> readAll() {
         List<MilkTea> MilkTeaList = milkTeaDAO.readAll();
         List<MilkTeaDTO> MilkTeaDTOList = new ArrayList<>();
@@ -120,9 +152,14 @@ public class MilkTeaService {
         return MilkTeaDTOList;
     }
 
-    public boolean update(MilkTeaDTO MilkTeaDTO) {
+    /**
+     * Update info
+     * @param milkTeaDTO that will be updated
+     * @return true if update is success otherwise false
+     */
+    public boolean update(MilkTeaDTO milkTeaDTO) {
         try {
-            MilkTea MilkTea = new MilkTea(MilkTeaDTO);
+            MilkTea MilkTea = new MilkTea(milkTeaDTO);
             milkTeaDAO.update(MilkTea);
         } catch (Exception e) {
             e.printStackTrace();
@@ -131,6 +168,11 @@ public class MilkTeaService {
         return true;
     }
 
+    /**
+     * Delete data
+     * @param id of instance that will be delete
+     * @return true if delete is success otherwise false
+     */
     public boolean delete(int id) {
         try {
             milkTeaDAO.delete(id);
@@ -141,6 +183,11 @@ public class MilkTeaService {
         return true;
     }
 
+    /**
+     * Get data base on input condition 
+     * @param fieldName of object 
+     * @param value that will be compared
+     */
     public void likeOperator(String field, String value) {
     	
     	List<MilkTea> milkTeaList = milkTeaDAO.likeOperator(field, value);
@@ -161,6 +208,10 @@ public class MilkTeaService {
 		}
     }
     
+    /**
+     * Get rows of database based on condition input is greater than or equal
+     * @param value that will be compared
+     */
     public void priceGreaterThen(double value) {
     	
     	List<MilkTea> milkTeaList = milkTeaDAO.greaterThanOperator("price", value);
@@ -181,6 +232,10 @@ public class MilkTeaService {
 		}
     }
     
+    /**
+     * Get rows of database based on condition input is less than or equal
+     * @param value hat will be compared
+     */
     public void priceLessThen(double value) {
     	
     	List<MilkTea> milkTeaList = milkTeaDAO.lessThanOperator("price", value);
@@ -201,6 +256,11 @@ public class MilkTeaService {
 		}
     }
 
+    /**
+     * Find a instance base on input condition
+     * @param fieldName of entity 
+     * @param value that will be compared
+     */
 	public void find(String pathFile, String sheetName) {
 		
 		Workbook workbook = ServiceUtil.convertXLSXtoWorkbook(pathFile);

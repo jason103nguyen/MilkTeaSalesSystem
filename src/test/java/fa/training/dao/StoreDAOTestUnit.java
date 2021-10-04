@@ -1,10 +1,3 @@
-/*
- * (C) Copyright 2021 Fresher Academy. All Right Reserved .
- *
- * @author pc Pham Tran Gia Huy
- * @date Oct 1, 2021
- * @version 1.0
- */
 package fa.training.dao;
 
 import java.util.List;
@@ -12,7 +5,6 @@ import java.util.List;
 import org.hibernate.Session;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import fa.training.dao.StoreDAO;
 import fa.training.entities.Store;
 import fa.training.utils.HibernateUtil;
 

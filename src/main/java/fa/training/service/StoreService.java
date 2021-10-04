@@ -22,7 +22,12 @@ public class StoreService {
         this.storeDAO = new StoreDAO();
     }
 
-    
+    /**
+     * Add data from file excel
+     * @param pathFile path name of file excel
+     * @param sheetName sheet contain data
+     * @throws Exception throw if convert file excel doesn't success
+     */
 	public void addFromExcel(String pathFile, String sheetName) throws Exception {
 		
 		List<StoreDTO> listStoreDTO = convertXLSX(pathFile, sheetName);
@@ -34,6 +39,12 @@ public class StoreService {
 		System.out.println("Adding success");
 	}
 	
+	/**
+     * Update info based on data from file excel
+     * @param pathFile path name of file excel
+     * @param sheetName sheet contain data
+     * @throws Exception throw if convert file excel doesn't success
+     */
 	public void updateFromExcel(String pathFile, String sheetName) throws Exception {
 		
 		List<StoreDTO> listStoreDTO = convertXLSX(pathFile, sheetName);
@@ -45,6 +56,12 @@ public class StoreService {
 		System.out.println("Update success");
 	}
 	
+	/**
+     * Convert data from file excel
+     * @param pathFile path name of file excel
+     * @param sheetName sheet contain data
+     * @return list of instance
+     */
 	public List<StoreDTO> convertXLSX(String pathFile, String sheetName) {
 		
 		Workbook workbook = ServiceUtil.convertXLSXtoWorkbook(pathFile);
@@ -83,7 +100,11 @@ public class StoreService {
 		return listObject;
 	}
 	
-    
+	/**
+     * Insert a instance to database
+     * @param milkTeaDTO the instance will be inserted
+     * @return true if insertion is success otherwise false
+     */
     public boolean create(StoreDTO storeDTO) {
         try {
             Store store = new Store(storeDTO);
@@ -97,6 +118,11 @@ public class StoreService {
         return true;
     }
 
+    /**
+     * Get a instance from database
+     * @param id of instance that will be get
+     * @return a instance
+     */
     public StoreDTO readOne(int id) {
         StoreDTO storeDTO = null;
         try {
@@ -110,6 +136,10 @@ public class StoreService {
         return storeDTO;
     }
 
+    /**
+     * Get all row from table
+     * @return list of instance
+     */
     public List<StoreDTO> readAll() {
         List<Store> storeList = storeDAO.readAll();
         List<StoreDTO> storeDTOList = new ArrayList<>();
@@ -124,6 +154,11 @@ public class StoreService {
         return storeDTOList;
     }
 
+    /**
+     * Update info
+     * @param milkTeaDTO that will be updated
+     * @return true if update is success otherwise false
+     */
     public boolean update(StoreDTO storeDTO) {
         try {
             Store store = new Store(storeDTO);
@@ -135,6 +170,11 @@ public class StoreService {
         return true;
     }
 
+    /**
+     * Delete data
+     * @param id of instance that will be delete
+     * @return true if delete is success otherwise false
+     */
     public boolean delete(int id) {
         try {
             storeDAO.delete(id);
@@ -145,6 +185,11 @@ public class StoreService {
         return true;
     }
 
+    /**
+     * Get data base on input condition 
+     * @param fieldName of object 
+     * @param value that will be compared
+     */
     public void likeOperator(String field, String value) {
     	
     	List<Store> storeList = storeDAO.likeOperator(field, value);
@@ -165,6 +210,11 @@ public class StoreService {
 		}
     }
     
+    /**
+     * Get rows of database based on condition input
+     * @param fieldName of object 
+     * @param value hat will be compared
+     */
     public void equalOperator(String field, Boolean value) {
     	List<Store> storeList = storeDAO.equalOperator(field, value);
     	List<StoreDTO> storeDtoList = new ArrayList<>();
@@ -184,6 +234,11 @@ public class StoreService {
 		}
     }
 
+    /**
+     * Find a instance base on input condition
+     * @param fieldName of entity 
+     * @param value that will be compared
+     */
 	public void find(String pathFile, String sheetName) {
 		
 		Workbook workbook = ServiceUtil.convertXLSXtoWorkbook(pathFile);

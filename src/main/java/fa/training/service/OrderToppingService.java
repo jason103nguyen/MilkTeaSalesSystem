@@ -21,6 +21,12 @@ public class OrderToppingService {
 
 	private OrderToppingDAO orderToppingDAO = new OrderToppingDAO();
 	
+	/**
+     * Add data from file excel
+     * @param pathFile path name of file excel
+     * @param sheetName sheet contain data
+     * @throws Exception throw if convert file excel doesn't success
+     */
 	public void addFromExcel(String pathFile, String sheetName) throws Exception {
 		
 		List<OrderToppingDTO> listOrderToppingDTO = convertXLSX(pathFile, sheetName);
@@ -32,6 +38,12 @@ public class OrderToppingService {
 		System.out.println("Adding success");
 	}
 	
+	/**
+     * Convert data from file excel
+     * @param pathFile path name of file excel
+     * @param sheetName sheet contain data
+     * @return list of instance
+     */
 	public List<OrderToppingDTO> convertXLSX(String pathFile, String sheetName) {
 		
 		Workbook workbook = ServiceUtil.convertXLSXtoWorkbook(pathFile);
@@ -77,13 +89,22 @@ public class OrderToppingService {
 		return listObject;
 	}
 	
-	
+	/**
+     * Insert a instance to database
+     * @param milkTeaDTO the instance will be inserted
+     * @return true if insertion is success otherwise false
+     */
 	public Serializable create(OrderToppingDTO orderToppingDTO) {
 		
 		OrderTopping OrderTopping = new OrderTopping(orderToppingDTO);
 		return orderToppingDAO.create(OrderTopping);
 	}
 	
+	/**
+     * Get a instance from database
+     * @param id of instance that will be get
+     * @return a instance
+     */
 	public OrderToppingDTO readOne(Serializable id) {
 		
 		OrderTopping orderTopping = orderToppingDAO.readOne(id);
@@ -91,6 +112,10 @@ public class OrderToppingService {
 		return orderToppingDTO;
 	}
 	
+	/**
+     * Get all row from table
+     * @return list of instance
+     */
 	public List<OrderToppingDTO> readAll() {
 		
 		List<OrderTopping> listOrderTopping = orderToppingDAO.readAll();
@@ -102,12 +127,22 @@ public class OrderToppingService {
 		return listOrderToppingDTO;
 	}
 	
+	/**
+     * Update info
+     * @param milkTeaDTO that will be updated
+     * @return true if update is success otherwise false
+     */
 	public void update(OrderToppingDTO orderToppingDTO) {
 		
 		OrderTopping orderTopping = new OrderTopping(orderToppingDTO);
 		orderToppingDAO.update(orderTopping);
 	}
 	
+	/**
+     * Delete data
+     * @param id of instance that will be delete
+     * @return true if delete is success otherwise false
+     */
 	public void delete(Serializable id) {
 		
 		orderToppingDAO.delete(id);

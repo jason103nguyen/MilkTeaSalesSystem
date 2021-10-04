@@ -1,4 +1,3 @@
-
 package fa.training.entities;
 
 
