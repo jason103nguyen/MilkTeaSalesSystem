@@ -37,7 +37,7 @@ public class Customer {
 	private String phone;
 
 	@OneToMany(mappedBy = "customer" , cascade = CascadeType.ALL)
-	private Set<Order> orders = new HashSet<Order>();
+	private Set<Order> orders;
 	
 	public Customer() {}
 
@@ -55,6 +55,14 @@ public class Customer {
 		this.lastName = dto.getLastName();
 		this.phone = dto.getPhone();
 		this.email = dto.getEmail();
+	}
+	
+	public Set<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
 	}
 
 	public int getId() {

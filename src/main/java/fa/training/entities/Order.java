@@ -40,18 +40,16 @@ public class Order {
 	private double totalPrice;
 
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-	private Set<OrderTopping> setOrderTopping = new HashSet<OrderTopping>();
+	private Set<OrderTopping> setOrderTopping;
 	
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-	private Set<OrderMilkTea> setOrderMilkTea = new HashSet<OrderMilkTea>();
+	private Set<OrderMilkTea> setOrderMilkTea;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne
 	@JoinColumn(name = "store_id")
 	private Store store;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	
@@ -73,6 +71,22 @@ public class Order {
 		this.totalPrice = dto.getTotalPrice();
 	}
 	
+	public Set<OrderTopping> getSetOrderTopping() {
+		return setOrderTopping;
+	}
+
+	public void setSetOrderTopping(Set<OrderTopping> setOrderTopping) {
+		this.setOrderTopping = setOrderTopping;
+	}
+
+	public Set<OrderMilkTea> getSetOrderMilkTea() {
+		return setOrderMilkTea;
+	}
+
+	public void setSetOrderMilkTea(Set<OrderMilkTea> setOrderMilkTea) {
+		this.setOrderMilkTea = setOrderMilkTea;
+	}
+
 	public Store getStore() {
 		return store;
 	}
@@ -123,7 +137,7 @@ public class Order {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(createDate, customer, id, status, store, totalPrice);
+		return Objects.hash(createDate, id, status, totalPrice);
 	}
 
 	@Override

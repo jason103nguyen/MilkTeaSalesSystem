@@ -34,7 +34,7 @@ public class Store {
 	private boolean isAvailable;
 	
 	@OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
-	private Set<Order> orders = new HashSet<Order>();
+	private Set<Order> setOrder;
 	
 	public Store() {}
 
@@ -50,6 +50,14 @@ public class Store {
 		this.id = dto.getId();
 		this.isAvailable = dto.isAvailable();
 		this.storeName = dto.getStoreName();
+	}
+	
+	public Set<Order> getSetOrder() {
+		return setOrder;
+	}
+
+	public void setSetOrder(Set<Order> setOrder) {
+		this.setOrder = setOrder;
 	}
 
 	public int getId() {
@@ -86,7 +94,7 @@ public class Store {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, id, isAvailable, orders, storeName);
+		return Objects.hash(address, id, isAvailable, setOrder, storeName);
 	}
 
 	@Override
@@ -99,7 +107,7 @@ public class Store {
 			return false;
 		Store other = (Store) obj;
 		return Objects.equals(address, other.address) && id == other.id && isAvailable == other.isAvailable
-				&& Objects.equals(orders, other.orders) && Objects.equals(storeName, other.storeName);
+				&& Objects.equals(storeName, other.storeName);
 	}
 
 	@Override

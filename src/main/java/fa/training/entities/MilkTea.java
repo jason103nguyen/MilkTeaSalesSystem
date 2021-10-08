@@ -1,6 +1,7 @@
 package fa.training.entities;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -30,7 +31,7 @@ public class MilkTea {
 	private double price;
 	
 	@OneToMany(mappedBy = "milkTea", cascade = CascadeType.ALL)
-	private Set<OrderMilkTea> setMilkTeaOrder = new HashSet<OrderMilkTea>();
+	private Set<OrderMilkTea> setMilkTeaOrder;
 
 	public MilkTea() {}
 
@@ -44,6 +45,33 @@ public class MilkTea {
 		this.id = dto.getId();
 		this.name = dto.getName();
 		this.price = dto.getPrice();
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, name, price, setMilkTeaOrder);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MilkTea other = (MilkTea) obj;
+		return id == other.id && Objects.equals(name, other.name)
+				&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price)
+				&& Objects.equals(setMilkTeaOrder, other.setMilkTeaOrder);
+	}
+
+	public Set<OrderMilkTea> getSetMilkTeaOrder() {
+		return setMilkTeaOrder;
+	}
+
+	public void setSetMilkTeaOrder(Set<OrderMilkTea> setMilkTeaOrder) {
+		this.setMilkTeaOrder = setMilkTeaOrder;
 	}
 
 	public int getId() {

@@ -1,5 +1,7 @@
 package fa.training.entities;
 
+import java.util.Objects;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,13 +26,11 @@ public class OrderMilkTea {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne
 	@JoinColumn(name = "order_id")
 	private Order order;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne
 	@JoinColumn(name = "milk_tea_id")
 	private MilkTea milkTea;
 	
@@ -82,6 +82,24 @@ public class OrderMilkTea {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, quantity);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OrderMilkTea other = (OrderMilkTea) obj;
+		return id == other.id && Objects.equals(milkTea, other.milkTea) && Objects.equals(order, other.order)
+				&& quantity == other.quantity;
 	}
 
 	@Override
